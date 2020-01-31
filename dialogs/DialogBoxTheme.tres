@@ -1,0 +1,48 @@
+[gd_resource type="Theme" load_steps=7 format=2]
+
+[ext_resource path="res://fonts/FreeSansBold.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://fonts/FreeSansOblique.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://fonts/FreeSans.tres" type="DynamicFont" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.745098, 0.639216, 0.403922, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 30
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 30
+shadow_size = 6
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[resource]
+default_font = ExtResource( 3 )
+Panel/styles/panel = SubResource( 1 )
+Panel/styles/panelf = null
+Panel/styles/panelnc = null
+RichTextLabel/colors/default_color = Color( 1, 1, 1, 1 )
+RichTextLabel/colors/font_color_selected = Color( 0.490196, 0.490196, 0.490196, 1 )
+RichTextLabel/colors/font_color_shadow = Color( 0, 0, 0, 0.796078 )
+RichTextLabel/colors/selection_color = Color( 0.1, 0.1, 1, 0.8 )
+RichTextLabel/constants/line_separation = 1
+RichTextLabel/constants/shadow_as_outline = 0
+RichTextLabel/constants/shadow_offset_x = 1
+RichTextLabel/constants/shadow_offset_y = 1
+RichTextLabel/constants/table_hseparation = 3
+RichTextLabel/constants/table_vseparation = 3
+RichTextLabel/fonts/bold_font = SubResource( 2 )
+RichTextLabel/fonts/bold_italics_font = null
+RichTextLabel/fonts/italics_font = SubResource( 3 )
+RichTextLabel/fonts/mono_font = null
+RichTextLabel/fonts/normal_font = ExtResource( 3 )
+RichTextLabel/styles/focus = null
+RichTextLabel/styles/normal = null

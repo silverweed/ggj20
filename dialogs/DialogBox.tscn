@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://dialogs/DialogBox.gd" type="Script" id=1]
+[ext_resource path="res://dialogs/DialogBoxTheme.tres" type="Theme" id=2]
+[ext_resource path="res://fonts/FreeSans.tres" type="DynamicFont" id=3]
+[ext_resource path="res://dialogs/img/triangle_reversed.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "ahead"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Panel/GoAhead:rect_position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 470, 141.392 ), Vector2( 470, 130.033 ) ]
+}
+
+[node name="DialogBox" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.7258
+margin_top = -0.0332184
+margin_right = 0.72583
+margin_bottom = -0.0332031
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 503.0
+margin_bottom = 173.0
+theme = ExtResource( 2 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+theme = ExtResource( 2 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+
+[node name="GoAhead" type="Label" parent="Panel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -33.0
+margin_top = -31.608
+margin_right = -15.0
+margin_bottom = -9.608
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "▼"
+
+[node name="Arrow" type="TextureRect" parent="Panel"]
+modulate = Color( 0.745098, 0.639216, 0.403922, 1 )
+margin_left = 27.1132
+margin_top = 171.491
+margin_right = 127.113
+margin_bottom = 271.491
+rect_scale = Vector2( 0.56, 0.56 )
+texture = ExtResource( 4 )
+
+[node name="ArrowShade" type="TextureRect" parent="Panel/Arrow"]
+modulate = Color( 0, 0, 0, 1 )
+show_behind_parent = true
+margin_left = 7.12302
+margin_top = 3.27725
+margin_right = 107.123
+margin_bottom = 103.277
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/ahead = SubResource( 1 )
