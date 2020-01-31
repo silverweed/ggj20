@@ -6,7 +6,7 @@ signal all_displayed
 signal single_displayed
 
 export var chars_per_second = 50
-var hide_on_finish = false
+export var hide_on_finish = true
 var automatic_advance = false setget set_automatic_advance
 var hang_time_after_last = 0
 var manual_advance_is_locked = false
@@ -22,29 +22,16 @@ var text_cursor = 0
 var waiting = false
 var interruptible_wait_timer = Timer.new()
 var is_killed = false
-var dialog_owner: Node = null
 
 onready var label = $Panel/RichTextLabel
 onready var panel = $Panel
 onready var ahead = $Panel/GoAhead
-onready var arrow = $Panel/Arrow
 
 func _ready():
 	$AnimationPlayer.play("ahead")
 	interruptible_wait_timer.connect("timeout", self, "emit_signal", ["advance"])
 	add_child(interruptible_wait_timer)
-	display_all(["hello", "there"])
 	
-	
-func _process(_delta):
-	if dialog_owner != null:
-		arrow.rect_global_position.x = clamp(dialog_owner.global_position.x, 
-			panel.rect_global_position.x + arrow.rect_size.x * 0.5, panel.rect_global_position.x + panel.rect_size.x - arrow.rect_size.x)
-		rect_global_position.y = min(dialog_owner.global_position.y - 400, 0)#clamp(dialog_owner.global_position.y - 400, 0, get_viewport_rect().size.y)
-		var diff = dialog_owner.global_position.x - arrow.rect_global_position.x
-		if abs(diff) > 0:
-			rect_global_position.x += diff
-		
 	
 func display(text):
 	if erase_previous_text_upon_display:

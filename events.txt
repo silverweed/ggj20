@@ -1,0 +1,13 @@
+$event the_dragon_attacks
+$title The dragon attacks!!!
+---
+In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate
+
+the visual form of a document or a typeface without relying on meaningful content.
+---
+
+$event another_dragon_attacks
+$title Another Dragon attacks! This time, 20% badder.
+---
+About this generator. This generator uses a dictionary of Latin words to construct passages of Lorem Ipsum text that meet your desired length. The sentence and paragraph durations and punctuation dispersal are calculated using Gaussian distribution, based on statistical analysis of real world texts.
+---

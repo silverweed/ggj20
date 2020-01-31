@@ -12,16 +12,27 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "DialogBox",
 "language": "GDScript",
-"path": "res://dialogs/DialogBox.gd"
+"path": "res://ui/dialogs/DialogBox.gd"
+}, {
+"base": "Node",
+"class": "EventsDB",
+"language": "GDScript",
+"path": "res://events/EventsDB.gd"
 } ]
 _global_script_class_icons={
-"DialogBox": ""
+"DialogBox": "",
+"EventsDB": ""
 }
 
 [application]
 
 config/name="ggj20"
+run/main_scene="res://levels/Level.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Globals="*res://Globals.gd"
 
 [display]
 

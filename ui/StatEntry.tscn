@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/LabelFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://ui/StatEntry.gd" type="Script" id=2]
+
+[node name="StatEntry" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.231964
+margin_top = 0.449158
+margin_right = 0.231934
+margin_bottom = 0.449158
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatName" type="Label" parent="HBoxContainer"]
+margin_top = 285.0
+margin_right = 502.0
+margin_bottom = 314.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "STATNAME:"
+align = 2
+valign = 1
+
+[node name="StatValue" type="Label" parent="HBoxContainer"]
+margin_left = 522.0
+margin_top = 285.0
+margin_right = 1024.0
+margin_bottom = 314.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "STATVALUE"
+valign = 1

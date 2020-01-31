@@ -5,12 +5,7 @@
 [ext_resource path="res://fonts/FreeSans.tres" type="DynamicFont" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.745098, 0.639216, 0.403922, 1 )
-corner_radius_top_left = 5
-corner_radius_top_right = 30
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 30
-shadow_size = 6
+bg_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 20
