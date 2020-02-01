@@ -33,6 +33,7 @@ func restart():
 		
 
 func add_stat(name: String, value: int):
+	print("add_Stat(", name, ", ", value, ")")
 	set_stat(name, get_stat(name) + value)
 
 
@@ -93,5 +94,15 @@ func run_event(name: String):
 	if !events.has(name):
 		print("[warning] inexisting event ", name)
 		return
-		
-	emit_signal("event_started", events.get(name))
+	
+	var event: EventTypes.Event = events.get(name)
+	apply_stat_changes(event)
+	emit_signal("event_started", event)
+
+
+func apply_stat_changes(event: EventTypes.Event):
+	for change in event.stat_changes:
+		var percent = EventParser.compute_chance_expr(change.chance_expr, stats_cur)
+		print("% = ", percent)
+		if rand_range(0, 100) < percent:
+			add_stat(change.stat_name, change.change)

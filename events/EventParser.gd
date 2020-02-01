@@ -8,6 +8,8 @@ static func parse_all_events(file: File): # -> Dict(name -> Event)
 	#   ---
 	#   event description (multiline allowed)
 	#   ---
+	#   change [expr] stat1 +N
+	#   change []     stat2 -M # events are independent
 	#   > Choice A
 	#     [expr] outcome_1
 	#     ...
@@ -63,7 +65,7 @@ static func parse_all_events(file: File): # -> Dict(name -> Event)
 		
 		elif line.begins_with("["):
 			if cur_choice == null:
-				print("[syntax_error] found outcome line outside a choice")
+				print("[syntax_error] found outcome line outside a choice/stat change")
 				break
 			line = line.trim_prefix("[")
 			var tokens = line.split("]")
@@ -75,6 +77,26 @@ static func parse_all_events(file: File): # -> Dict(name -> Event)
 			outcome.chance_expr = tokens[0].trim_suffix("]").strip_edges()
 			outcome.linked_event = tokens[1].strip_edges()
 			cur_choice.outcomes.push_back(outcome)
+		
+		elif line.begins_with("change"):
+			if cur_choice != null:
+				print("[syntax_error] cannot have stat change inside choice")
+				break
+			if cur_event == null:
+				print("[syntax_error] found stat change outside an event")
+				break
+			line = line.trim_prefix("change").strip_edges().trim_prefix("[")
+			var tokens = line.split("]")
+			if tokens.size() != 2:
+				print("[syntax_error] invalid line [", line)
+				break
+				
+			var stat_change = EventTypes.Stat_Change.new();
+			stat_change.chance_expr = tokens[0].trim_suffix("]").strip_edges()
+			var change_part = tokens[1].strip_edges().split(" ")
+			stat_change.stat_name = change_part[0]
+			stat_change.change = int(change_part[1])
+			cur_event.stat_changes.push_back(stat_change)
 			
 		elif line == "end":
 			if cur_choice != null:
@@ -96,6 +118,9 @@ static func parse_all_events(file: File): # -> Dict(name -> Event)
 # returns: a number obtained by parsing the expression, which represents
 # a 100-based percentage
 static func compute_chance_expr(chance_expr: String, stats) -> float:
+	if chance_expr.length() == 0:
+		return 100.0
+		
 	# chance_expr can contain:
 	#   number
 	#   ident (stat name)

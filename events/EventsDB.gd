@@ -18,7 +18,7 @@ func load_events(fname: String):
 	f.open(fname, File.READ)
 	events = EventParser.parse_all_events(f)
 	f.close()
-#	debug_print_events(events)
+	debug_print_events(events)
 	
 
 
@@ -34,4 +34,6 @@ func debug_print_events(evts):
 			print(" > ", choice.description)
 			for outcome in choice.outcomes:
 				print("[", outcome.chance_expr, "] ", outcome.linked_event)
+		for change in event.stat_changes:
+			print("change [", change.chance_expr, "] ", change.stat_name, " ", change.change)
 		

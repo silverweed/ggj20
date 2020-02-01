@@ -4,8 +4,15 @@ class Event:
 	var title: String
 	var description: String
 	var choices = [] # [Choice]
+	var stat_changes = [] # [Stat_Change]
 	
 
+class Stat_Change:
+	var chance_expr: String
+	var stat_name: String
+	var change: int
+	
+	
 class Event_Choice:
 	var description: String
 	var outcomes = [] # [Outcome]

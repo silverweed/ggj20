@@ -4,8 +4,6 @@ extends Node
 signal gameover
 
 var is_gameover = false
-var time = 0.0
-var fuffa = false
 var event_ui: EventUI
 
 onready var globals = $"/root/Globals"
@@ -23,6 +21,11 @@ func _ready():
 			event_ui.connect("choice_selected", self, "on_event_choice_selected")
 	else:
 		print("[WARNING] no event ui!")
+		
+	call_deferred("run_master_event")
+		
+func run_master_event():
+	globals.run_event("home")
 
 
 func _exit_tree():
@@ -36,12 +39,6 @@ func _process(delta):
 		gameover()
 		return
 		
-	time += delta
-	if !fuffa:
-		fuffa = true
-		# FIXME TODO MADAFFACCA
-		globals.run_event("a")
-		
 		
 func on_event_choice_selected(event: EventTypes.Event, n_choice: int):
 	var next_evt = eval_event_choice_outcome(event.choices[n_choice])
@@ -54,10 +51,6 @@ func eval_event_choice_outcome(choice: EventTypes.Event_Choice) -> String:
 	var chances = []
 	var cum_perc = 0
 	for outcome in choice.outcomes:
-		if outcome.chance_expr == "":
-			chances.push_back(100)
-			break
-			
 		var percent = EventParser.compute_chance_expr(outcome.chance_expr, stats)
 		percent = min(100 - cum_perc, percent)
 		cum_perc += percent
