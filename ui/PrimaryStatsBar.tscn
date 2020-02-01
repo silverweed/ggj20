@@ -12,6 +12,7 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/separation = 50
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -19,15 +20,15 @@ __meta__ = {
 [node name="PrimaryStatEntry" parent="VBoxContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 1024.0
-margin_bottom = 298.0
+margin_right = 1920.0
+margin_bottom = 515.0
 size_flags_vertical = 3
 
 [node name="PrimaryStatEntry2" parent="VBoxContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 302.0
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_top = 565.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 size_flags_vertical = 3
 stat_name = "fuel"

@@ -16,22 +16,42 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Hull" parent="VBoxContainer" instance=ExtResource( 2 )]
+[node name="Weapons" parent="VBoxContainer" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 0.0
 margin_right = 1920.0
+margin_bottom = 267.0
+size_flags_vertical = 3
+stat_name = "Weapons"
+
+[node name="Inhabitants" parent="VBoxContainer" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 271.0
+margin_right = 1920.0
 margin_bottom = 538.0
 size_flags_vertical = 3
-stat_name = "Hull"
+stat_name = "Inhabitants"
 
-[node name="Fuel" parent="VBoxContainer" instance=ExtResource( 2 )]
+[node name="Seeds" parent="VBoxContainer" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 542.0
 margin_right = 1920.0
+margin_bottom = 809.0
+size_flags_vertical = 3
+stat_name = "Seeds"
+
+[node name="Materials" parent="VBoxContainer" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 813.0
+margin_right = 1920.0
 margin_bottom = 1080.0
 size_flags_vertical = 3
-stat_name = "Fuel"
+stat_name = "Materials"

@@ -4,14 +4,15 @@ signal stat_changed(name, new_value)
 signal event_started(event)
 signal event_choice_selected(event, n_choice)
 
-const HULL_MAX = 20
-const FUEL_MAX = 20
-
 var stats_cur = {}
 
 var stats_max = {
-	"hull": HULL_MAX,
-	"fuel": FUEL_MAX
+	"hull": 20,
+	"fuel": 20,
+	"weapons": 100,
+	"inhabitants": 50,
+	"seeds": 30,
+	"materials": 100
 }
 
 var events: EventsDB
@@ -25,7 +26,10 @@ func _ready():
 func restart():
 	stats_cur.clear()
 	for key in stats_max:
-		stats_cur[key] = stats_max[key]
+		if key == "fuel" or key == "hull":
+			stats_cur[key] = stats_max[key]
+		else:
+			stats_cur[key] = 0
 		
 
 func add_stat(name: String, value: int):

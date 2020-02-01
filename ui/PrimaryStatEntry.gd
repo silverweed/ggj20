@@ -22,3 +22,5 @@ func on_stat_changed(name: String, value: int):
 func update_stat_value():
 	stat_value.text = str(globals.get_stat(stat_name)) + \
 			" / " + str(globals.get_stat_max(stat_name))
+	$VBoxContainer/ProgressBar.value = globals.get_stat(stat_name)
+	$VBoxContainer/ProgressBar.max_value = globals.get_stat_max(stat_name)
