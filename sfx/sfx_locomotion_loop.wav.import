@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sfx_locomotion_loop.wav-492557092f7dedd8ab2e937a069b71c2.sample"
+
+[deps]
+
+source_file="res://sfx/sfx_locomotion_loop.wav"
+dest_files=[ "res://.import/sfx_locomotion_loop.wav-492557092f7dedd8ab2e937a069b71c2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

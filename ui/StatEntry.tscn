@@ -24,9 +24,9 @@ __meta__ = {
 }
 
 [node name="StatName" type="Label" parent="HBoxContainer"]
-margin_top = 529.0
+margin_top = 526.0
 margin_right = 950.0
-margin_bottom = 551.0
+margin_bottom = 553.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 1, 0.6, 1 )
@@ -36,9 +36,9 @@ valign = 1
 
 [node name="StatValue" type="Label" parent="HBoxContainer"]
 margin_left = 970.0
-margin_top = 529.0
+margin_top = 526.0
 margin_right = 1920.0
-margin_bottom = 551.0
+margin_bottom = 553.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 1 )
 text = "STATVALUE"

@@ -4,6 +4,7 @@ event home
 The journey is long.
 ---
 change [] fuel -1
+change [] inhabitants +40
 > Carry on
 	[150]	home
 	[15]	a

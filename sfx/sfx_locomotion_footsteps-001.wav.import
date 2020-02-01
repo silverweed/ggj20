@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sfx_locomotion_footsteps-001.wav-d8b6b7200d4a048d5fbe24af0ed1d715.sample"
+
+[deps]
+
+source_file="res://sfx/sfx_locomotion_footsteps-001.wav"
+dest_files=[ "res://.import/sfx_locomotion_footsteps-001.wav-d8b6b7200d4a048d5fbe24af0ed1d715.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

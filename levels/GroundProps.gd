@@ -4,6 +4,10 @@ const TreeTextures = [
 	preload("res://assets/T_env_tree_1.png"),
 	preload("res://assets/T_env_tree_2.png"),
 	preload("res://assets/T_env_tree_3.png"),
+	preload("res://assets/T_env_bush_1.png"),
+	preload("res://assets/T_env_bush_2.png"),
+	preload("res://assets/T_env_bush_3.png"),
+	preload("res://assets/T_env_bush_4.png"),
 ]
 
 const MAX_SPAWN_X = 3000

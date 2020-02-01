@@ -36,14 +36,14 @@ __meta__ = {
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 431.0
-margin_bottom = 198.0
+margin_bottom = 228.0
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
+size_flags_stretch_ratio = 0.6
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_top = 202.0
+margin_top = 232.0
 margin_right = 431.0
-margin_bottom = 598.0
+margin_bottom = 613.0
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 3 )
 text = "Writing
@@ -56,7 +56,7 @@ valign = 1
 [node name="StatsPanel" parent="VBoxContainer" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 602.0
+margin_top = 617.0
 margin_right = 431.0
 margin_bottom = 1000.0
 size_flags_vertical = 3

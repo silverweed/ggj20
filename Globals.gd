@@ -1,7 +1,7 @@
 extends Node
 
 signal stat_changed(name, new_value)
-signal event_started(event)
+signal event_started(event, stats_changed)
 signal event_choice_selected(event, n_choice)
 
 var stats_cur = {}
@@ -18,6 +18,7 @@ var stats_max = {
 var events: EventsDB
 var game_mgr: GameManager
 var screenshake_sys: ScreenShakeSystem
+
 
 func _ready():
 	events = EventsDB.new()
@@ -97,15 +98,19 @@ func run_event(name: String):
 		return
 	
 	var event: EventTypes.Event = events.get(name)
-	apply_stat_changes(event)
-	emit_signal("event_started", event)
+	var stats_changed = apply_stat_changes(event)
+	emit_signal("event_started", event, stats_changed)
 
 
-func apply_stat_changes(event: EventTypes.Event):
+func apply_stat_changes(event: EventTypes.Event): # -> [[name, intended_change, actual_change]]
+	var changes = []
 	for change in event.stat_changes:
 		var percent = EventParser.compute_chance_expr(change.chance_expr, stats_cur)
 		if rand_range(0, 100) < percent:
+			var prev = get_stat(change.stat_name)
 			add_stat(change.stat_name, change.change)
+			changes.append([change.stat_name, change.change, get_stat(change.stat_name) - prev])
+	return changes
 
 
 func do_screenshake():
