@@ -16,7 +16,9 @@ margin_top = 0.0622862
 margin_right = 0.647095
 margin_bottom = 0.0622559
 
-[node name="EventUI" parent="CanvasLayer" instance=ExtResource( 3 )]
+[node name="EventUI" parent="CanvasLayer" groups=[
+"event_ui",
+] instance=ExtResource( 3 )]
 visible = false
 anchor_left = 0.23
 anchor_top = 0.026

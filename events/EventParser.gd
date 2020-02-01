@@ -89,7 +89,8 @@ static func parse_all_events(file: File): # -> Dict(name -> Event)
 		print("[warning] Not all events were parsed correctly.")
 	
 	return events
-	
+
+
 
 # stats: { String => int }
 # returns: a number obtained by parsing the expression, which represents
@@ -213,6 +214,17 @@ static func is_op(token_type) -> bool:
 
 static func parse_val(token: Token, stats) -> float:
 	if token.type == Token_Type.Ident:
+		var splitters = [">=",">","<=","<"]
+		for splitter in splitters:
+			var left_right = token.value.split(splitter)
+			if len(left_right) == 1: continue
+			var actual_ident = left_right[0]
+			var num = float(left_right[1])
+			match splitter:
+				">": return float(stats[actual_ident] > num)
+				">=": return float(stats[actual_ident] >= num)
+				"<": return float(stats[actual_ident] < num)
+				"<=": return float(stats[actual_ident] <= num)
 		print("[note] ", token.value, " = ", stats[token.value])
 		return stats[token.value]
 	elif token.type == Token_Type.Num:

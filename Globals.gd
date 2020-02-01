@@ -2,6 +2,7 @@ extends Node
 
 signal stat_changed(name, new_value)
 signal event_started(event)
+signal event_choice_selected(event, n_choice)
 
 const HULL_MAX = 20
 const FUEL_MAX = 20

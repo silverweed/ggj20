@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://ui/EventUI.gd" type="Script" id=1]
-[ext_resource path="res://ui/LabelFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://ui/ChoicesContainer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/dialogs/DialogBox.tscn" type="PackedScene" id=3]
 
 [node name="EventUI" type="Control"]
@@ -16,38 +16,17 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="EventDescription" type="RichTextLabel" parent="Panel"]
-anchor_left = 0.355
-anchor_top = 0.343
-anchor_right = 0.703
-anchor_bottom = 0.643
-margin_left = -10.8729
-margin_top = -1.27054
-margin_right = 4.77509
-margin_bottom = 12.7295
-custom_fonts/normal_font = ExtResource( 2 )
+[node name="ChoicesContainer" parent="Panel" instance=ExtResource( 2 )]
+anchor_top = 0.432
+anchor_right = 1.009
+margin_left = 50.0
+margin_top = -0.200012
+margin_right = -50.0
+margin_bottom = -10.0
 
 [node name="DialogBox" parent="Panel" instance=ExtResource( 3 )]
-anchor_right = 1.012
-anchor_bottom = 0.827
-margin_left = 1.0
+margin_left = 0.0
 margin_top = 0.0
-margin_right = -11.2881
-margin_bottom = -0.200012
-
-[node name="Button" type="Button" parent="Panel"]
-anchor_left = 0.345
-anchor_top = 0.889
-anchor_right = 0.658
-anchor_bottom = 0.947
-margin_left = 0.0187378
-margin_top = -0.216431
-margin_right = 0.506714
-margin_bottom = -0.0164185
-custom_fonts/font = ExtResource( 2 )
-text = "OK, COOL STORY BRO"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_right = 0.0
+margin_bottom = 0.0
 [connection signal="visibility_changed" from="." to="." method="_on_EventUI_visibility_changed"]
-[connection signal="pressed" from="Panel/Button" to="." method="_on_Button_pressed"]

@@ -9,6 +9,7 @@ the visual form of a document or a typeface without relying on meaningful conten
 ---
 # This is a comment
 > Run away
+   [100*speed<15] die
    [50 - speed*2] another_dragon_attacks
    []             you_escape
 > Face it
