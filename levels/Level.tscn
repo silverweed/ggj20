@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://GameManager.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/HUD.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ui/EventUI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ui/GameOverPanel.tscn" type="PackedScene" id=4]
 
 [node name="Level" type="Node2D"]
@@ -16,19 +15,6 @@ margin_left = 0.647095
 margin_top = 0.0622862
 margin_right = 0.647095
 margin_bottom = 0.0622559
-
-[node name="EventUI" parent="CanvasLayer" groups=[
-"event_ui",
-] instance=ExtResource( 3 )]
-visible = false
-anchor_left = 0.23
-anchor_top = 0.026
-anchor_right = 0.766
-anchor_bottom = 0.928
-margin_left = -1.63762
-margin_top = 0.2824
-margin_right = 3.49835
-margin_bottom = 4.08234
 
 [node name="GameOverPanel" parent="CanvasLayer" instance=ExtResource( 4 )]
 visible = false

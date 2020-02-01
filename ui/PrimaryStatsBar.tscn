@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui/PrimaryStatEntry.tscn" type="PackedScene" id=1]
+
+[node name="PrimaryStatsBar" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PrimaryStatEntry" parent="VBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1024.0
+margin_bottom = 298.0
+size_flags_vertical = 3
+
+[node name="PrimaryStatEntry2" parent="VBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 302.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_vertical = 3
+stat_name = "fuel"

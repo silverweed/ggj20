@@ -15,17 +15,13 @@ func _ready():
 	description.connect("all_displayed", self, "on_all_displayed")
 	choices.connect("choice_selected", self, "on_choice_selected")
 	choices.owner = self
-	
-
-func _on_EventUI_visibility_changed():
-	if visible:
-		description.display_all(event_description.split("\n\n"))
 
 
 func on_event_started(event: EventTypes.Event):
 	cur_event = event
 	event_description = event.description
-	show()
+	choices.hide()
+	description.display_all(event_description.split("\n\n"))
 
 
 func on_all_displayed():

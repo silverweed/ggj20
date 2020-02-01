@@ -6,7 +6,7 @@ signal all_displayed
 signal single_displayed
 
 export var chars_per_second = 50
-export var hide_on_finish = true
+export var hide_on_finish = false
 var automatic_advance = false setget set_automatic_advance
 var hang_time_after_last = 0
 var manual_advance_is_locked = false
@@ -90,6 +90,7 @@ func display_all(ts):
 		yield(self, "advance")
 		
 	if hide_on_finish: hide()
+	label.bbcode_text = ""
 	emit_signal("all_displayed")
 	
 	

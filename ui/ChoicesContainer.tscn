@@ -40,4 +40,3 @@ margin_right = 1024.0
 margin_bottom = 600.0
 
 [node name="EnableInputTimer" type="Timer" parent="."]
-[connection signal="visibility_changed" from="." to="." method="_on_ChoicesContainer_visibility_changed"]

@@ -21,7 +21,9 @@ func _ready():
 		event_ui = event_uis[0]
 		if event_ui != null:
 			event_ui.connect("choice_selected", self, "on_event_choice_selected")
-	
+	else:
+		print("[WARNING] no event ui!")
+
 
 func _exit_tree():
 	if globals.game_mgr == self:

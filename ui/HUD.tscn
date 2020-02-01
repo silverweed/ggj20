@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://ui/dialogs/DialogBox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/EventUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/HUD.gd" type="Script" id=2]
-[ext_resource path="res://ui/StatsPanel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/SidePanel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/textures/UI_bg.png" type="Texture" id=4]
 
 [node name="HUD" type="Control"]
 anchor_right = 1.0
@@ -14,17 +15,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DialogBox" parent="." instance=ExtResource( 1 )]
-anchor_top = 0.633
-anchor_right = 0.597
-margin_left = 0.647095
-margin_top = 0.847076
-margin_right = 0.319092
-margin_bottom = 0.647095
-chars_per_second = 45
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="StatsPanel" parent="." instance=ExtResource( 3 )]
-anchor_left = 1.0
-anchor_top = 1.0
-margin_left = -414.0
-margin_top = -220.0
+[node name="SidePanel" parent="." instance=ExtResource( 3 )]
+anchor_left = 0.734
+margin_left = -0.280029
+margin_right = 0.0
+
+[node name="EventUI" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.01
+anchor_top = 0.696
+anchor_right = 0.73
+margin_left = -0.200001
+margin_top = 0.319946
+margin_right = -0.600098
+margin_bottom = -3.0

@@ -33,6 +33,7 @@ func show_choices(choices):
 		choice_labels[i].show()
 	
 	self.selected = 0
+	show()
 
 
 func set_selected(s: int):
@@ -49,6 +50,5 @@ func _input(event):
 		self.selected = (selected - 1 + displayed) % displayed
 
 	elif event.is_action_pressed("advance_text"):
-		owner.hide()
 		emit_signal("choice_selected", selected)
 		set_process_input(false)
