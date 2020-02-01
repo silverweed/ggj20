@@ -22,5 +22,3 @@ visible = false
 
 [node name="WorldLevel" parent="." instance=ExtResource( 3 )]
 position = Vector2( -2767.86, 330.172 )
-
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]

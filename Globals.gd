@@ -17,6 +17,7 @@ var stats_max = {
 
 var events: EventsDB
 var game_mgr: GameManager
+var screenshake_sys: ScreenShakeSystem
 
 func _ready():
 	events = EventsDB.new()
@@ -24,6 +25,7 @@ func _ready():
 	
 
 func restart():
+	get_tree().paused = false
 	stats_cur.clear()
 	for key in stats_max:
 		if key == "fuel" or key == "hull":
@@ -33,7 +35,6 @@ func restart():
 		
 
 func add_stat(name: String, value: int):
-	print("add_Stat(", name, ", ", value, ")")
 	set_stat(name, get_stat(name) + value)
 
 
@@ -103,6 +104,13 @@ func run_event(name: String):
 func apply_stat_changes(event: EventTypes.Event):
 	for change in event.stat_changes:
 		var percent = EventParser.compute_chance_expr(change.chance_expr, stats_cur)
-		print("% = ", percent)
 		if rand_range(0, 100) < percent:
 			add_stat(change.stat_name, change.change)
+
+
+func do_screenshake():
+	if !screenshake_sys:
+		return
+	
+	screenshake_sys.screenshake(10.0, 0.3, false, true)
+	

@@ -1,10 +1,7 @@
 extends Node2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-onready var Hand_location = $"./Joint1/Joint2/Hand"
+onready var globals = $"/root/Globals"
 onready var target = $"target"
 onready var base = $Leg_base
 
@@ -18,3 +15,6 @@ func _ready():
 	$AnimationPlayer.play("walk_1")
 	$AnimationPlayer.seek(animation_offset)
 
+
+func screenshake():
+	globals.do_screenshake()

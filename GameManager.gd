@@ -68,4 +68,5 @@ func eval_event_choice_outcome(choice: EventTypes.Event_Choice) -> String:
 
 
 func gameover():
+	get_tree().paused = true
 	emit_signal("gameover")
