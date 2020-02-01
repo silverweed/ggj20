@@ -8,6 +8,8 @@ onready var globals = $"/root/Globals"
 
 func _ready():
 	globals.events.load_events("events.txt")
+	EventParser.compute_chance_expr("3 + hull*2-3*fuel", Globals.stats_cur)
+	EventParser.compute_chance_expr("10*5", Globals.stats_cur)
 	
 	
 func _process(delta):

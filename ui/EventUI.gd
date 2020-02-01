@@ -17,6 +17,6 @@ func _on_EventUI_visibility_changed():
 	description.display_all(event_description.split("\n\n"))
 
 
-func on_event_started(event: EventsDB.Event):
+func on_event_started(event: EventTypes.Event):
 	event_description = event.description
 	show()

@@ -11,6 +11,10 @@
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource( 2 )]
+margin_left = 0.647095
+margin_top = 0.0622862
+margin_right = 0.647095
+margin_bottom = 0.0622559
 
 [node name="EventUI" parent="CanvasLayer" instance=ExtResource( 3 )]
 visible = false

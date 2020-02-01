@@ -7,13 +7,13 @@ const HULL_MAX = 20
 const FUEL_MAX = 20
 
 var stats_cur = {
-	"Hull": HULL_MAX,
-	"Fuel": FUEL_MAX
+	"hull": HULL_MAX,
+	"fuel": FUEL_MAX
 }
 
 var stats_max = {
-	"Hull": HULL_MAX,
-	"Fuel": FUEL_MAX
+	"hull": HULL_MAX,
+	"fuel": FUEL_MAX
 }
 
 var events: EventsDB
@@ -28,17 +28,40 @@ func add_stat(name: String, value: int):
 
 
 func set_stat(name: String, value: int):
+	name = name.to_lower()
 	assert(stats_cur.has(name), "Inexisting stat " + name + "!")
-	assert(stats_max.has(name), "Inexisting stat " + name + "!")
 	
 	stats_cur[name] = clamp(value, 0, stats_max[name])
 	emit_signal("stat_changed", name, value)
 
 
 func get_stat(name: String) -> int:
+	name = name.to_lower()
 	assert(stats_cur.has(name), "Inexisting stat " + name + "!")
-	assert(stats_max.has(name), "Inexisting stat " + name + "!")
 	return stats_cur[name]
+	
+
+func add_stat_max(name: String, value: int):
+	set_stat_max(name, get_stat_max(name) + value)
+
+
+func set_stat_max(name: String, value: int):
+	name = name.to_lower()
+	assert(stats_max.has(name), "Inexisting stat " + name + "!")
+	
+	stats_max[name] = value
+	
+	# Ensure stat cur is not above max
+	var prev_stat = stats_cur[name]
+	stats_cur[name] = clamp(prev_stat, 0, stats_max[name])
+	if stats_cur[name] != prev_stat:
+		emit_signal("stat_changed", name, stats_cur[name])
+
+
+func get_stat_max(name: String) -> int:
+	name = name.to_lower()
+	assert(stats_max.has(name), "Inexisting stat " + name + "!")
+	return stats_max[name]
 	
 
 enum Gameover_State {
@@ -48,10 +71,10 @@ enum Gameover_State {
 }
 
 func check_gameover():
-	if stats_cur["Hull"] <= 0:
+	if stats_cur["hull"] <= 0:
 		return Gameover_State.Hull_Depleted
 	
-	if stats_cur["Fuel"] <= 0:
+	if stats_cur["fuel"] <= 0:
 		return Gameover_State.Fuel_Depleted
 		
 	return Gameover_State.Not_Game_Over

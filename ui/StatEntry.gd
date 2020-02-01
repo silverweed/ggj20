@@ -7,7 +7,7 @@ onready var stat_value = $HBoxContainer/StatValue
 
 func _ready():
 	assert(stat_name.length() > 0, "Empty stat name on StatEntry!")
-	$HBoxContainer/StatName.text = stat_name + ":"
+	$HBoxContainer/StatName.text = stat_name.capitalize() + ":"
 
 	update_stat_value()
 
@@ -20,7 +20,5 @@ func on_stat_changed(name: String, value: int):
 		
 		
 func update_stat_value():
-	var stats = globals.stats_cur
-	var mstats = globals.stats_max
-	assert(stats.has(stat_name), "No stat named " + stat_name + "!")
-	stat_value.text = str(stats[stat_name]) + " / " + str(mstats[stat_name])
+	stat_value.text = str(globals.get_stat(stat_name)) + \
+			" / " + str(globals.get_stat_max(stat_name))
