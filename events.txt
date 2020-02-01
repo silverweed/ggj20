@@ -9,11 +9,45 @@ the visual form of a document or a typeface without relying on meaningful conten
 ---
 # This is a comment
 > Run away
-   [100*speed<15] die
-   [50 - speed*2] another_dragon_attacks
+   [100*hull<15] die
+   [50 - hull*2] another_dragon_attacks
    []             you_escape
 > Face it
    []             die
 end
 
+event a
+title A
+---
+A
+---
+> Try B
+   [50] a
+   []   b
+> Go to C
+   []   c
+end
 
+event b
+title B
+---
+B
+---
+> Try C
+   [50] b
+   []   c
+> Go to A
+   []   a
+end
+
+event c
+title C
+---
+C
+---
+> Try A
+   [50] c
+   []   a
+> Go to B
+   []   b
+end

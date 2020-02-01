@@ -18,7 +18,7 @@ func load_events(fname: String):
 	f.open(fname, File.READ)
 	events = EventParser.parse_all_events(f)
 	f.close()
-	debug_print_events(events)
+#	debug_print_events(events)
 	
 
 

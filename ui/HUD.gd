@@ -6,7 +6,3 @@ onready var dialog = $DialogBox
 func _ready():
 	dialog.display_all(["test", "test", "such test"])
 
-
-func _input(event):
-	if event.is_action_pressed("advance_text"):
-		$"/root/Globals".add_stat("Hull", -5)

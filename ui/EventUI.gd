@@ -14,10 +14,12 @@ func _ready():
 	$"/root/Globals".connect("event_started", self, "on_event_started")
 	description.connect("all_displayed", self, "on_all_displayed")
 	choices.connect("choice_selected", self, "on_choice_selected")
+	choices.owner = self
 	
 
 func _on_EventUI_visibility_changed():
-	description.display_all(event_description.split("\n\n"))
+	if visible:
+		description.display_all(event_description.split("\n\n"))
 
 
 func on_event_started(event: EventTypes.Event):
@@ -27,7 +29,10 @@ func on_event_started(event: EventTypes.Event):
 
 
 func on_all_displayed():
-	choices.show_choices(["choice A", "choice B", "choice C"])
+	var choice_desc = []
+	for c in cur_event.choices:
+		choice_desc.push_back(c.description)
+	choices.show_choices(choice_desc)
 
 
 func on_choice_selected(n: int):
