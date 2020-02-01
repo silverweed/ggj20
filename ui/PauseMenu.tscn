@@ -1,0 +1,84 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://fonts/FreeSans.tres" type="DynamicFont" id=1]
+[ext_resource path="res://ui/PauseMenu.gd" type="Script" id=2]
+
+[node name="PauseMenu" type="Panel"]
+pause_mode = 2
+anchor_left = 0.304
+anchor_top = 0.285
+anchor_right = 0.695
+anchor_bottom = 0.715
+margin_left = 0.0269775
+margin_top = 0.0201874
+margin_right = -0.357056
+margin_bottom = -7.97983
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.194
+anchor_top = 0.23
+anchor_right = 0.802
+anchor_bottom = 0.429
+margin_left = -0.0444031
+margin_top = -0.0341721
+margin_right = -0.244446
+margin_bottom = 0.137436
+custom_fonts/font = ExtResource( 1 )
+text = "PAUSED"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.333
+anchor_top = 0.427
+anchor_right = 0.673
+anchor_bottom = 0.721
+margin_left = 0.138107
+margin_top = 0.117233
+margin_right = 0.0238342
+margin_bottom = -0.0643311
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResumeButton" type="Button" parent="VBoxContainer"]
+margin_right = 255.0
+margin_bottom = 42.0
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Resume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RestartButton" type="Button" parent="VBoxContainer"]
+margin_top = 46.0
+margin_right = 255.0
+margin_bottom = 88.0
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Restart"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+margin_top = 92.0
+margin_right = 255.0
+margin_bottom = 134.0
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

@@ -13,8 +13,10 @@ func _ready():
 	randomize()
 	
 	globals.game_mgr = self
-	globals.events.load_events("base_events.txt")
-	globals.events.load_events("event_pack_1.txt")
+	if globals.events.events.empty():
+		globals.events.load_events("base_events.txt")
+		globals.events.load_events("event_pack_1.txt")
+		
 	var event_uis = get_tree().get_nodes_in_group("event_ui")
 	if len(event_uis) > 0:
 		event_ui = event_uis[0]
