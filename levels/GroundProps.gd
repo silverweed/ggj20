@@ -46,7 +46,7 @@ func spawn_tree_at_random_pos():
 	tree.texture = TreeTextures[randi() % len(TreeTextures)]
 	tree.position = Vector2(x, y)
 	tree.scale = Vector2(sx, sy)
-	tree.z_index = 800 * (2 * (randi() % 2) - 1)
+	tree.z_index = 600 * (2 * (randi() % 2) - 1)
 	if tree.z_index >= 0:
 		tree.position.y -= 10
 	

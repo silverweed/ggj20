@@ -1,0 +1,9 @@
+# The Master Event
+event home
+---
+The journey is long.
+---
+change [] fuel -1
+> Carry on
+	[]	Abb_1
+end

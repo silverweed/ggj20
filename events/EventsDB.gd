@@ -4,6 +4,7 @@ extends Node
 	
 var events = {}
 
+
 func has(name: String) -> bool:
 	return events.has(name)
 
@@ -16,9 +17,14 @@ func load_events(fname: String):
 	var f = File.new()
 	assert(f.file_exists(fname), "File " + fname + " not found!")
 	f.open(fname, File.READ)
-	events = EventParser.parse_all_events(f)
+	var new_events = EventParser.parse_all_events(fname, f)
 	f.close()
+	print("[ok] loaded events from ", fname)
 #	debug_print_events(events)
+	for key in new_events:
+		if events.has(key):
+			print("[warning] overwriting duplicate event ", key)
+		events[key] = new_events[key]
 	
 
 

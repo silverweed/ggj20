@@ -10,6 +10,13 @@ onready var legs = [
 	$IK_leg5
 ]
 
+onready var modules = {
+	"materials": $ModulesFg/ModuleAttachPointFg1,
+	"inhabitants": $ModulesBg/ModuleAttachPointBg2,
+	"seeds": $ModulesBg/ModuleAttachPointBg3,
+	"cannon": $ModulesFg/ModuleAttachPointFg2
+}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	anim_player.play("Idle_1")
@@ -25,3 +32,10 @@ func on_stat_changed(name: String, value: int):
 	anim_player.playback_speed = speed
 	for leg in legs:
 		leg.get_node("AnimationPlayer").playback_speed = speed
+
+
+func set_module_active(name: String, active: bool):
+	if !modules.has(name):
+		print("module ", name, " does not exist.")
+		return
+	modules[name].visible = active

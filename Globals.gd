@@ -7,9 +7,9 @@ signal event_choice_selected(event, n_choice)
 var stats_cur = {}
 
 var stats_max = {
-	"hull": 20,
+	"integrity": 20,
 	"fuel": 20,
-	"weapons": 100,
+	"ammo": 100,
 	"inhabitants": 50,
 	"seeds": 30,
 	"materials": 100
@@ -29,7 +29,7 @@ func restart():
 	get_tree().paused = false
 	stats_cur.clear()
 	for key in stats_max:
-		if key == "fuel" or key == "hull":
+		if key == "fuel" or key == "integrity":
 			stats_cur[key] = stats_max[key]
 		else:
 			stats_cur[key] = 0
@@ -83,7 +83,7 @@ enum Gameover_State {
 }
 
 func check_gameover():
-	if stats_cur["hull"] <= 0:
+	if stats_cur["integrity"] <= 0:
 		return Gameover_State.Hull_Depleted
 	
 	if stats_cur["fuel"] <= 0:
@@ -117,5 +117,5 @@ func do_screenshake():
 	if !screenshake_sys:
 		return
 	
-	screenshake_sys.screenshake(10.0, 0.3, false, true)
+	screenshake_sys.screenshake(15.0, 0.3, false, true)
 	

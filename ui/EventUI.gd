@@ -29,7 +29,7 @@ func on_event_started(event: EventTypes.Event, stats_changed):
 
 
 func on_all_displayed():
-	if stats_change_shown:
+	if stats_change_shown or len(cur_event_stats_changed) == 0:
 		var choice_desc = []
 		for c in cur_event.choices:
 			choice_desc.push_back(c.description)
@@ -41,10 +41,20 @@ func on_all_displayed():
 
 func prettify_stat_changes(stat_changes) -> String:
 	var pretty = ""
+	# Collapse stat changes
+	var collapsed = {}
 	for change in stat_changes:
 		var s_name = change[0]
-		var s_intended_change = change[1]
-		var s_actual_change = change[2]
+		if collapsed.has(s_name):
+			var c = collapsed[s_name]
+			collapsed[s_name] = [c[0] + change[1], c[1] + change[2]]
+		else:
+			collapsed[s_name] = [change[1], change[2]]
+			
+	for s_name in collapsed:
+		var change = collapsed[s_name]
+		var s_intended_change = change[0]
+		var s_actual_change = change[1]
 		var verb = "found" if s_intended_change > 0 else "lost"
 		pretty += "You " + verb + " " + str(abs(s_intended_change)) + " " + s_name
 		if s_intended_change > 0 and s_intended_change != s_actual_change:

@@ -27,6 +27,7 @@ anchor_bottom = 0.0
 margin_right = 1860.0
 margin_bottom = 485.0
 size_flags_vertical = 3
+stat_name = "integrity"
 
 [node name="PrimaryStatEntry2" parent="VBoxContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0

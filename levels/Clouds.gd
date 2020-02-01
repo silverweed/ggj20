@@ -29,7 +29,7 @@ func _process(delta):
 	
 func spawn_cloud_at_random_pos():
 	var x = rand_range(0, MAX_SPAWN_X * 4)
-	var y = rand_range(-700, 400)
+	var y = rand_range(-700, 100)
 	var cloud = Sprite.new()
 	var sx = rand_range(1, 3)
 	var sy = sx * rand_range(0.8, 1.3)
@@ -46,5 +46,5 @@ func spawn_cloud_at_random_pos():
 	
 func calc_fade_color() -> Color:
 	var a = lerp(0.6, 1, 1.0 * clouds.size() / N_CLOUDS)
-	return Color(a, a, min(1, a*1.1), rand_range(0.2, 0.6))
+	return Color(a, a, min(1, a*1.1), rand_range(0.6, 0.8))
 

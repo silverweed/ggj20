@@ -24,7 +24,7 @@ margin_top = 0.0
 margin_right = 1920.0
 margin_bottom = 267.0
 size_flags_vertical = 3
-stat_name = "Weapons"
+stat_name = "Ammo"
 
 [node name="Inhabitants" parent="VBoxContainer" instance=ExtResource( 2 )]
 anchor_right = 0.0

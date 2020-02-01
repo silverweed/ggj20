@@ -1,6 +1,10 @@
 class_name EventParser
 
-static func parse_all_events(file: File): # -> Dict(name -> Event)
+static func synerr(fname: String, lineno: int, msg: String):
+	print("[syntax_error] at ", fname, ":", lineno, ": ", msg)
+	
+
+static func parse_all_events(fname: String, file: File): # -> Dict(name -> Event)
 	var events = {}
 	# Format:
 	#   event event_name # comment is ignored
@@ -22,8 +26,10 @@ static func parse_all_events(file: File): # -> Dict(name -> Event)
 	var started_desc = false
 	var desc = ""
 	var cur_choice: EventTypes.Event_Choice = null
+	var lineno = 0
 	while !file.eof_reached():
 		var line = file.get_line()
+		lineno += 1
 		
 		if started_desc:
 			if line.begins_with("---"):
@@ -39,21 +45,24 @@ static func parse_all_events(file: File): # -> Dict(name -> Event)
 			
 		if line.begins_with("event"):
 			if cur_event != null:
-				print("[syntax_error] previous event wasn't ended when read 'event'")
+				synerr(fname, lineno, "previous event wasn't ended when read 'event'")
 				break
 			cur_event = EventTypes.Event.new()
 			cur_event_key = line.trim_prefix("event").strip_edges()
 			
 		elif line.begins_with("title"):
 			if cur_event == null:
-				print("[syntax_error] found 'title' not belonging to any event")
+				synerr(fname, lineno, "found 'title' not belonging to any event")
 				break
 			cur_event.title = line.trim_prefix("title").strip_edges()
 			
 		elif line.begins_with("---"):
 			assert(!started_desc)
+			if cur_event == null:
+				synerr(fname, lineno, "found 'start description' not belonging to any event")
+				break
 			if cur_event.description.length() > 0:
-				print("[syntax_error] event description started more than once")
+				synerr(fname, lineno, "event description started more than once")
 				break
 			started_desc = true
 			
@@ -65,12 +74,12 @@ static func parse_all_events(file: File): # -> Dict(name -> Event)
 		
 		elif line.begins_with("["):
 			if cur_choice == null:
-				print("[syntax_error] found outcome line outside a choice/stat change")
+				synerr(fname, lineno, "found outcome line outside a choice/stat change")
 				break
 			line = line.trim_prefix("[")
 			var tokens = line.split("]")
 			if tokens.size() != 2:
-				print("[syntax_error] invalid line [", line)
+				synerr(fname, lineno, "invalid line [" + line)
 				break
 				
 			var outcome = EventTypes.Event_Outcome.new();
@@ -80,15 +89,15 @@ static func parse_all_events(file: File): # -> Dict(name -> Event)
 		
 		elif line.begins_with("change"):
 			if cur_choice != null:
-				print("[syntax_error] cannot have stat change inside choice")
+				synerr(fname, lineno, "cannot have stat change inside choice")
 				break
 			if cur_event == null:
-				print("[syntax_error] found stat change outside an event")
+				synerr(fname, lineno, "found stat change outside an event")
 				break
 			line = line.trim_prefix("change").strip_edges().trim_prefix("[")
 			var tokens = line.split("]")
 			if tokens.size() != 2:
-				print("[syntax_error] invalid line [", line)
+				synerr(fname, lineno, "invalid line [" + line)
 				break
 				
 			var stat_change = EventTypes.Stat_Change.new();
@@ -143,7 +152,7 @@ static func compute_chance_expr(chance_expr: String, stats) -> float:
 		match state:
 			Parser_State.Start:
 				if is_op(token.type):
-					print("[syntax_error] unexpected operator ", token.value, " in stream")
+					print("[syntax_error] unexpected operator " + str(token.value) + " in stream")
 					return 0.0
 
 				left = parse_val(token, stats)
@@ -151,7 +160,7 @@ static func compute_chance_expr(chance_expr: String, stats) -> float:
 				
 			Parser_State.WantOp:
 				if !is_op(token.type):
-					print("[syntax_error] expected operator but got ", token.value, " instead")
+					print("[syntax_error] expected operator but got " + str(token.value) + " instead")
 					return 0.0
 				
 				if token.type == Token_Type.Mul:
@@ -164,7 +173,7 @@ static func compute_chance_expr(chance_expr: String, stats) -> float:
 					
 			Parser_State.WantNotOp:
 				if is_op(token.type):
-					print("[syntax_error] unexpected operator ", token.value, " in stream")
+					print("[syntax_error] unexpected operator " + str(token.value) + " in stream")
 					return 0.0
 				
 				var val = parse_val(token, stats)
@@ -174,7 +183,7 @@ static func compute_chance_expr(chance_expr: String, stats) -> float:
 		cur += 1
 
 	if state == Parser_State.WantNotOp:
-		print("[syntax_error] incomplete expression ", chance_expr)
+		print("[syntax_error] incomplete expression " + chance_expr)
 		return 0.0
 	else:
 		partial.push_back(Token.new(Token_Type.Num, left))
@@ -192,7 +201,7 @@ static func compute_chance_expr(chance_expr: String, stats) -> float:
 		match state:
 			Parser_State.Start:
 				if is_op(token.type):
-					print("[syntax_error] unexpected operator ", token.value, " in stream")
+					print("[syntax_error] unexpected operator " + str(token.value) + " in stream")
 					return 0.0
 
 				left = parse_val(token, stats)
@@ -200,7 +209,7 @@ static func compute_chance_expr(chance_expr: String, stats) -> float:
 				
 			Parser_State.WantOp:
 				if !is_op(token.type):
-					print("[syntax_error] expected operator but got ", token.value, " instead")
+					print("[syntax_error] expected operator but got " + str(token.value) + " instead")
 					return 0.0
 				
 				assert(token.type != Token_Type.Mul)
@@ -209,7 +218,7 @@ static func compute_chance_expr(chance_expr: String, stats) -> float:
 					
 			Parser_State.WantNotOp:
 				if is_op(token.type):
-					print("[syntax_error] unexpected operator ", token.value, " in stream")
+					print("[syntax_error] unexpected operator " + str(token.value) + " in stream")
 					return 0.0
 				
 				var val = parse_val(token, stats)
@@ -223,7 +232,7 @@ static func compute_chance_expr(chance_expr: String, stats) -> float:
 		cur += 1
 
 	if state == Parser_State.WantNotOp:
-		print("[syntax_error] incomplete expression ", chance_expr)
+		print("[syntax_error] incomplete expression " + chance_expr)
 		return 0.0
 		
 #	print("final: ", left)

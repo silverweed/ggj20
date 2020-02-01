@@ -1,0 +1,169 @@
+event Abb_1
+title Abandoned Tank
+---
+You come across a large tracked vehicle from Time Immemorial.
+It seems that the vehicle has been used by humans.
+Holes in the armor carefully patched with wood and scrap metal, it lied abandoned in the plains.
+---
+> Approach the vehicle
+[] Abb_1_1
+end
+
+event Abb_1_1
+---
+Upon close inspection, the vehicle has been left stranded for lack of fuel.
+You salvage what little munitions have been left.
+---
+change [] ammo +1
+change[50] ammo +1
+> proceed in your journey.
+[] home
+end
+
+
+
+
+
+
+event Abb_2
+title Abandoned_Artilery
+---
+The automaton encounters a large stationary gun pointed at a slight angle.
+Too heavy to be easily lifted, it has been left untouched by the humans.
+---
+> salvage the remains
+[75 + 5 * integrity<10] Abb_2_1
+[5 - 5 * integrity<10] Abb_2_2
+[] Abb_2_3
+> ignore the machinery and proceed on you journey
+[] home
+end
+
+event Abb_2_1
+---
+You salvage what little munitions have been left.
+---
+change [25] ammo +1
+change[25] ammo +2
+> proceed in your journey.
+[] home
+end
+
+event Abb_2_2
+---
+You use the claw to uproot the machine from its place, and attach it to the hull.
+The machine suffers some small damage in the process,  but it is now firmly attached to the automaton.
+---
+change [] integrity -2
+change[25] integrity -3
+# add thing
+> proceed in your journey.
+[] home
+end
+
+event Abb_2_3
+---
+As the claw approaches the device, a spark lights some of the munitions, triggering a large explosion and severaly damaging the claw.
+---
+change [] integrity -3
+change[25] integrity -1
+> proceed in your journey.
+[] home
+end
+
+
+event Distress_1
+title Abandoned_Tower
+---
+Your sensor pick-up a strange signal coming from the vicinity.
+---
+> Head to the source of the signal
+[50] Distress_1_1
+[30] Distress_1_2
+[] Distress_1_3
+end 
+
+event Distress_1_1
+---
+As you approach the source of the signal, a tall, slender tower stands in the distance.
+You reach the tower, expecting some human to approach you, but nothing happens.
+After a short time, you leave the tower and proceed on your journey.
+---
+> proceed in your journey.
+[] home
+end
+
+event Distress_1_2
+---
+As you approach the source of the signal, a tall, slender tower stands in the distance.
+Shortly after, the signla stops, and a few humans approach you from the tower.
+---
+change[] inhabitants +2
+change[50] inhabitants +1
+> proceed in your journey.
+[] home
+end
+
+event Distress_1_3
+---
+IT WAS A TRAP ALL ALONG
+---
+>die
+[] home
+end
+
+
+
+
+
+event Abb_3
+title Abandoned_bunker
+---
+As the machine lumbers ahead, a sharp metallic sound interrupts the otherwise monotonous rhythm of the journey.
+The foot revealed a thick metal plate, covering the ground, intact, aside from the damage just sustaned.
+---
+> Remove the plate 
+[50] Abb_3_1
+[] Abb_3_2
+> ignore the plate and proceed on you journey
+[] home
+end
+
+event Abb_3_1
+---
+The metal door easily bends when the claw grabs it, revealing its content.
+Munitions and machines of war from time immemorial are found inside.
+The claw dives in the new opening to retrieve useful materials but is damaged by the tight walls.
+---
+change[] ammo +2
+change[] integrity -1
+> proceed in your journey.
+[] home
+end
+
+
+event Abb_3_2
+---
+The metal door easily bends when the claw grabs it, revealing its content.
+Munitions and machines of war from time immemorial are found inside.
+As the claw dives inside to retrieve its content, a spark lights some of the munitions, triggering a large explosion and severly damaging the claw.
+---
+change [] integrity -3
+change[25] integrity -1
+> proceed in your journey.
+[] home
+end
+
+
+
+
+
+event Dmg_1
+---
+A rupture occurs in the engine room, a wave of steam invades the hallways of the automaton, swallowing the humans.
+---
+change [] inhabitants -3
+change[25] integrity -1
+> proceed in your journey.
+[] home
+end

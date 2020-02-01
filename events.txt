@@ -1,18 +1,3 @@
-# The Master Event
-event home
----
-The journey is long.
----
-change [] fuel -1
-change [] inhabitants +40
-> Carry on
-	[150]	home
-	[15]	a
-	[15]	b
-	[15]	c
-	[]	the_dragon_attacks
-end
-
 
 event the_dragon_attacks  # a random comment
 title The dragon attacks!!!
