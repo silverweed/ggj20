@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://fonts/FreeSans.tres" type="DynamicFont" id=1]
+[ext_resource path="res://ui/GameOverPanel.gd" type="Script" id=2]
+
+[node name="GameOverPanel" type="Panel"]
+anchor_left = 0.304
+anchor_top = 0.285
+anchor_right = 0.695
+anchor_bottom = 0.715
+margin_left = 0.0269775
+margin_top = 0.0201874
+margin_right = -0.357056
+margin_bottom = -7.97983
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.182
+anchor_top = 0.244
+anchor_right = 0.79
+anchor_bottom = 0.462
+margin_left = 0.199997
+margin_top = -3.8147e-06
+margin_bottom = -8.5
+custom_fonts/font = ExtResource( 1 )
+text = "GAME OVER"
+align = 1
+valign = 1
+
+[node name="RestartButton" type="Button" parent="."]
+anchor_left = 0.334
+anchor_top = 0.604
+anchor_right = 0.654
+anchor_bottom = 0.828
+margin_left = 0.192719
+margin_top = -2.11333
+margin_right = 0.192719
+margin_bottom = -0.113327
+custom_fonts/font = ExtResource( 1 )
+text = "Restart"
+[connection signal="pressed" from="RestartButton" to="." method="_on_RestartButton_pressed"]

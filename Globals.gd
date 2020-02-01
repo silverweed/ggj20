@@ -7,10 +7,7 @@ signal event_choice_selected(event, n_choice)
 const HULL_MAX = 20
 const FUEL_MAX = 20
 
-var stats_cur = {
-	"hull": HULL_MAX,
-	"fuel": FUEL_MAX
-}
+var stats_cur = {}
 
 var stats_max = {
 	"hull": HULL_MAX,
@@ -18,11 +15,18 @@ var stats_max = {
 }
 
 var events: EventsDB
-
+var game_mgr: GameManager
 
 func _ready():
 	events = EventsDB.new()
+	restart()
 	
+
+func restart():
+	stats_cur.clear()
+	for key in stats_max:
+		stats_cur[key] = stats_max[key]
+		
 
 func add_stat(name: String, value: int):
 	set_stat(name, get_stat(name) + value)

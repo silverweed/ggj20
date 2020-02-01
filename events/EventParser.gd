@@ -101,7 +101,7 @@ static func compute_chance_expr(chance_expr: String, stats) -> float:
 	#   ident (stat name)
 	#   operator (+ - *)
 	# operators have their usual precedence.
-	print("parsing ", chance_expr)
+#	print("parsing ", chance_expr)
 	var tokens = tokenize_chance_expr(chance_expr)
 #	debug_print_tokens(tokens)
 	
@@ -201,7 +201,7 @@ static func compute_chance_expr(chance_expr: String, stats) -> float:
 		print("[syntax_error] incomplete expression ", chance_expr)
 		return 0.0
 		
-	print("final: ", left)
+#	print("final: ", left)
 	
 	return clamp(left, 0.0, 100.0)
 

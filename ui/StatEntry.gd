@@ -15,7 +15,7 @@ func _ready():
 	
 	
 func on_stat_changed(name: String, value: int):
-	if name == stat_name:
+	if name.to_lower() == stat_name.to_lower():
 		update_stat_value()
 		
 		

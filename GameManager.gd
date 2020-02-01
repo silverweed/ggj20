@@ -1,6 +1,9 @@
+class_name GameManager
 extends Node
 
-var gameover_processed = false
+signal gameover
+
+var is_gameover = false
 var time = 0.0
 var fuffa = false
 var event_ui: EventUI
@@ -11,6 +14,7 @@ onready var globals = $"/root/Globals"
 func _ready():
 	randomize()
 	
+	globals.game_mgr = self
 	globals.events.load_events("events.txt")
 	var event_uis = get_tree().get_nodes_in_group("event_ui")
 	if len(event_uis) > 0:
@@ -18,12 +22,16 @@ func _ready():
 		if event_ui != null:
 			event_ui.connect("choice_selected", self, "on_event_choice_selected")
 	
+
+func _exit_tree():
+	if globals.game_mgr == self:
+		globals.game_mgr = null
+	
 	
 func _process(delta):
-	if !gameover_processed and \
-			globals.check_gameover() != Globals.Gameover_State.Not_Game_Over:
-		gameover_processed = true
-		print("Game over!")
+	if !is_gameover and globals.check_gameover() != Globals.Gameover_State.Not_Game_Over:
+		is_gameover = true
+		gameover()
 		return
 		
 	time += delta
@@ -62,3 +70,7 @@ func eval_event_choice_outcome(choice: EventTypes.Event_Choice) -> String:
 	
 	assert(len(choice.outcomes) == 0, "Choice not made!")
 	return ""
+
+
+func gameover():
+	emit_signal("gameover")
