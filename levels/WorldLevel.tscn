@@ -10,6 +10,11 @@ position = Vector2( -41.7842, 196.541 )
 position = Vector2( 588.349, -72.1056 )
 
 [node name="TilingGround" parent="." instance=ExtResource( 2 )]
-position = Vector2( -1311.93, -38.5464 )
+position = Vector2( -1315.03, 0.142639 )
 scale = Vector2( 2, 2 )
 speed = 80.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 1539.74, 377.054 )
+current = true
+zoom = Vector2( 2, 2 )

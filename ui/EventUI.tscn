@@ -1,34 +1,41 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ui/EventUI.gd" type="Script" id=1]
 [ext_resource path="res://ui/ChoicesContainer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/dialogs/DialogBox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/textures/UI_bottom_box.png" type="Texture" id=4]
 
 [node name="EventUI" type="Control" groups=[
 "event_ui",
 ]]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = -871.0
+margin_bottom = -836.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+texture = ExtResource( 4 )
+expand = true
 
-[node name="ChoicesContainer" parent="Panel" instance=ExtResource( 2 )]
-anchor_top = 0.432
-anchor_right = 1.009
-margin_left = 50.0
-margin_top = -0.200012
-margin_right = -50.0
-margin_bottom = -10.0
+[node name="ChoicesContainer" parent="." instance=ExtResource( 2 )]
+anchor_left = 0.086
+anchor_top = 0.415
+anchor_right = 0.912
+anchor_bottom = 0.926
+margin_left = 0.0339966
+margin_top = -0.0250015
+margin_right = 0.127991
+margin_bottom = -0.0100098
 
-[node name="DialogBox" parent="Panel" instance=ExtResource( 3 )]
-margin_left = 0.0
-margin_top = 0.0
-margin_right = 0.0
-margin_bottom = 0.0
+[node name="DialogBox" parent="." instance=ExtResource( 3 )]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
 hide_on_finish = true

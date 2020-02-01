@@ -37,7 +37,7 @@ tracks/1/keys = {
 "values": [ Vector2( -128.436, 247.156 ), Vector2( -140.679, 262.12 ), Vector2( -128.436, 247.156 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Belt/Sprite:position")
+tracks/2/path = NodePath("Belt/BeltSprite:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -49,7 +49,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 10.8831, -19.0452 ), Vector2( 15.3042, 0.42511 ), Vector2( -4.21201, 2.90607 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Chimey/Sprite:position")
+tracks/3/path = NodePath("Chimey/ChimneySprite:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -61,7 +61,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -38.0905 ), Vector2( 0, 5.44143 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Sprite:position")
+tracks/4/path = NodePath("BodySprite:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -72,48 +72,95 @@ tracks/4/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 2.86389, -8.59183 ), Vector2( -1.43201, -5.72786 ) ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("Belt/Lower_body/LowerBodySprite:offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 3, 5.6, 7.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 30 ), Vector2( 0, 0 ), Vector2( 0, 30 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Belt/BeltSprite:offset")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.7, 3.2, 5.5, 7.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -10 ), Vector2( 0, 10 ), Vector2( 0, -10 ), Vector2( 0, 10 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("BodySprite:offset")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.1, 2.4, 4.8, 7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 25 ), Vector2( 0, 0 ), Vector2( 0, 25 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Chimey/ChimneySprite:offset")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 1.7, 4.3, 7, 9.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -10 ), Vector2( 0, 10 ), Vector2( 0, -10 ), Vector2( 0, 10 ) ]
+}
 
 [node name="Body" type="Node2D"]
 position = Vector2( -7.40247, -161.004 )
 script = ExtResource( 7 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 1.01622, -3.04871 )
+[node name="BodySprite" type="Sprite" parent="."]
+position = Vector2( 2.21721, -6.65174 )
 texture = ExtResource( 2 )
+offset = Vector2( 0, 18.5484 )
 
 [node name="Chimey" type="Node2D" parent="."]
 position = Vector2( -15.5082, -191.269 )
 scale = Vector2( 0.5, 0.5 )
 z_index = -10
 
-[node name="Sprite" type="Sprite" parent="Chimey"]
-position = Vector2( 0, -21.0859 )
+[node name="ChimneySprite" type="Sprite" parent="Chimey"]
+position = Vector2( 0, -3.40099 )
 texture = ExtResource( 1 )
+offset = Vector2( 0, 10 )
 
 [node name="Belt" type="Node2D" parent="."]
 position = Vector2( -15.5082, 141.078 )
 scale = Vector2( 0.5, 0.5 )
 z_index = 10
 
-[node name="Sprite" type="Sprite" parent="Belt"]
-position = Vector2( 13.7568, -6.38951 )
+[node name="BeltSprite" type="Sprite" parent="Belt"]
+position = Vector2( -3.76864, 2.60017 )
 scale = Vector2( 2.5, 2.5 )
 z_index = 10
 texture = ExtResource( 4 )
+offset = Vector2( 0, 8.70968 )
 
 [node name="Lower_body" type="Node2D" parent="Belt"]
 position = Vector2( -8.29834, 214.803 )
 z_index = -30
 
-[node name="Sprite" type="Sprite" parent="Belt/Lower_body"]
+[node name="LowerBodySprite" type="Sprite" parent="Belt/Lower_body"]
 scale = Vector2( 2, 2 )
 z_index = 10
 texture = ExtResource( 5 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 13.4953, 249.606 )
-current = true
-zoom = Vector2( 2, 2 )
+offset = Vector2( 0, 28.6957 )
 
 [node name="IK_leg1" parent="." instance=ExtResource( 3 )]
 position = Vector2( 175.946, 266.296 )
@@ -146,14 +193,14 @@ z_index = 10
 animation_offset = 3.5
 
 [node name="Sprite2" type="Sprite" parent="."]
-position = Vector2( -135.414, 268.13 )
+position = Vector2( -130.34, 249.484 )
 rotation = 1.5708
 scale = Vector2( 0.5, 0.5 )
 z_index = 10
 texture = ExtResource( 6 )
 
 [node name="Sprite3" type="Sprite" parent="."]
-position = Vector2( 44.6567, 267.334 )
+position = Vector2( 42.6567, 255.536 )
 rotation = 1.5708
 scale = Vector2( 0.5, 0.5 )
 z_index = 10

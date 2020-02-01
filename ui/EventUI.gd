@@ -6,8 +6,8 @@ signal choice_selected(event, n_choice)
 var event_description: String
 var cur_event: EventTypes.Event
 
-onready var description: DialogBox = $Panel/DialogBox
-onready var choices: ChoiceContainer = $Panel/ChoicesContainer
+onready var description: DialogBox = $DialogBox
+onready var choices: ChoiceContainer = $ChoicesContainer
 
 
 func _ready():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/PrimaryStatEntry.gd" type="Script" id=2]
 [ext_resource path="res://ui/ProgbarTheme.tres" type="Theme" id=3]
@@ -10,6 +10,9 @@ corner_radius_top_left = 100
 corner_radius_top_right = 100
 corner_radius_bottom_right = 100
 corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.027451, 0.0392157, 0.0588235, 1 )
 
 [node name="PrimaryStatEntry" type="Control"]
 anchor_right = 1.0
@@ -28,13 +31,13 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_right = 1024.0
-margin_bottom = 298.0
+margin_right = 1920.0
+margin_bottom = 538.0
 size_flags_vertical = 3
 
 [node name="StatNameLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
-margin_right = 510.0
-margin_bottom = 298.0
+margin_right = 958.0
+margin_bottom = 538.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 4 )
@@ -43,9 +46,9 @@ text = "STATNAME"
 valign = 2
 
 [node name="StatValueLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
-margin_left = 514.0
-margin_right = 1024.0
-margin_bottom = 298.0
+margin_left = 962.0
+margin_right = 1920.0
+margin_bottom = 538.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 4 )
@@ -55,11 +58,12 @@ align = 2
 valign = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="VBoxContainer"]
-margin_top = 302.0
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_top = 542.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 size_flags_vertical = 3
 theme = ExtResource( 3 )
 custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
 value = 50.0
 percent_visible = false
