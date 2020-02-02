@@ -1,7 +1,11 @@
 proxy pick
-[50] pick_1
-[25] pick_2
-[] pick_3
+[20] pick_1
+[15] pick_2
+[15] pick_3
+[10] pick_4
+[10] pick_5
+[10 * seeds>5] pick_6 
+[] pick_7
 end
 
 event pick_1
@@ -77,4 +81,285 @@ As the robot’s appendices cause the terrain to shake,  boards of plywood and r
 change [] inhabitants +5
 > The scared inhabitants board the automaton hoping for a better life.
 [] home
+end
+
+event pick_4 
+title Overgrowth
+icon generic
+---
+Camouflaged with the rest of the vegetation, a large greenhouse provides new life to the local ecosystem. The place seems unkept and left to its own demise. 
+---
+> Look for supplies
+[] pick_4_1
+> Ignore it and move passed it
+[] home
+end
+
+event pick_4_1
+title Overgrowth
+icon generic
+---
+Carefully avoiding to damage any of the now rooted vegetation, a stash of spare seeds is loaded onto the automaton.
+---
+change [] seeds +10
+> These seeds can be used elsewhere
+[] home
+end
+
+event pick_5 
+title Roots and Rain
+icon heart
+---
+Jagged rocks and large boulders, fragments of a recently collapsed rocky hill, block your path. Freshly cut timber, splintered wood and seed-loaded boughs can be seen protruding here and there along with large rounded saw blades and other pieces of broken machinery.
+---
+> Climb the rough terrain and salvage what’s available.
+[] pick_5_1
+> Move around the hill and collect whatever has rolled at the bottom of the landslide. 
+[] pick_5_2
+end
+
+event pick_5_1
+title Roots and Rain
+icon heart
+---
+As the sturdy legs sink into the mud and avoid gaps in the rubble, the arm reaches below, taking a hold on whatever is useful. 
+---
+> Climb the hill to gather more resources
+[100-integrity] pick_5_1_1
+[] pick_5_1_2
+end
+
+event pick_5_1_1
+title Roots and Rain
+icon heart
+---
+The metal legs slip and the body wacks against the ruined sawmill. The Hull integrity suffered damage. Nevertheless, Fuel, Seeds and Misc. Mats were gathered while trespassing the rough terrain. 
+---
+change [] seeds +10
+change [] integrity -10
+change [] mats +10
+change [70] fuel +2
+change [30] fuel +5
+> Continue…
+[] home
+end
+
+event pick_5_1_2
+title Roots and Rain
+icon heart
+---
+No incidents occurred. Feet and claws hold steadily on solid terrain as all essentials are loaded in the cargo hold. Seeds and Misc. Mats were gathered  while crossing the remains of the sawmill. 
+---
+change [] seeds +10
+change [] mats +10
+change [70] fuel +3
+change [30] fuel +7
+> Continue…
+[] home
+end
+
+event pick_5_2
+title Roots and Rain
+icon heart
+---
+Picking the safest route also means obtaining the least useful things. Boulders are easy to avoid and the terrain below is always visible, preventing a ruinous fall. 
+---
+change [] seeds +10
+change [40] mats +5
+change [60] mats +3
+> Continue…
+[] home
+end
+
+event pick_5_2_1
+title Roots and Rain
+icon heart
+---
+Not much that it isn’t rubble lays around the area. Circumnavigating the hill resulted in obtaining a few seeds and mats.
+---
+change [] seeds +5
+change [] mats +2
+> Continue…
+[] home
+end
+
+event pick_6 
+title Open Fields
+icon heart
+---
+Plains ahead, occasionally interrupted by gentle slopes, awaiting the mechanical newcomer. A river bends smoothly in this seemingly untouched area. 
+---
+> This seems like the right place to plant crops
+[20 * inhabitants>=30] pick_6_1_3
+[60] pick_6_1_1
+[] pick_6_1_2
+> Keep the crops for another area, maybe one with human life
+[] pick_6_2
+> Ask advice to the human aboard.
+[] pick_6_3
+end
+
+event pick_6_1_1
+title Open Fields
+icon heart
+---
+Crops are planted, new life and resources will soon become available. 
+---
+change [] seeds -5
+> Continue on your journey
+[] home
+end
+
+event pick_6_1_2
+title Open Fields
+icon heart
+---
+The AI’s heavily dated systems did not recognise some types of pollution harmful exclusively to human life.
+---
+change [] seeds -5
+> Continue on your journey
+[] home
+end
+
+event pick_6_1_3
+title Open Fields
+icon human
+---
+Seeds have been played but some of your inhabitants decided to create a new settlement here.
+---
+change [] seeds -5
+change [] inhabitants -5
+change [50] inhabitants -2
+change [25] inhabitants -3
+> Continue on your journey
+[] home
+end
+
+
+
+
+
+event pick_6_2
+title Open Fields
+icon heart
+---
+Maybe a missed opportunity, or maybe a wise choice.
+---
+> Continue…
+[] home
+end
+
+
+pick_6_3
+title Open Fields
+icon heart
+---
+The humans are certain that this area is favorable for creating a new community.
+---
+> Plant the crops and initiate a new community.
+[] pick_6_3_1
+> Abandon the area and look for better opportunities
+[] pick_6_3_2
+end
+
+event pick_6_3_1
+title Open Fields
+icon human
+---
+Some inhabitants decide to start a new settlement with the seeds provided. A new community will grow here.
+---
+> The automaton continues its journey
+[] home
+end
+
+
+pick_6_3_2
+title Open Fields
+icon heart
+---
+The automaton moves forward without ever stopping.
+---
+> Continue..
+[] home
+end
+
+
+proxy pick_7
+change[] mats 3
+change[50] fuel 1
+[] settlement_1
+end
+
+
+event settlement_1
+title A Settlement
+icon human
+---
+The automaton reaches a small human settlement.
+The local inhabitants reach out to trade and offer gifts.
+--- 
+> [100 * mats>10] Trade fuel
+[] settlement_1_fuel_1
+> [100 * fuel>10] Trade materials
+[] settlement_1_mats_1
+settlement_1_mats_3
+> Construct living quarters
+[100 * mats>30] settlement_1_build_1
+> Continue on your journey
+[] home
+
+
+event settlement_1_fuel_1
+title A Settlement - traders
+icon human
+---
+A local trader offers to give 5 fuel for 7 building materials
+--- 
+> Accept
+[] settlement_1_fuel_1_accept
+> Refuse
+[] settlement_1
+
+proxy settlement_1_fuel_1_accept
+change[] fuel 5
+change[] mats -7
+[] settlement_1
+end
+
+event settlement_1_mats_1
+title A Settlement - traders
+icon human
+---
+A local trader offers to give 5 building materials for 6 fuel.
+--- 
+> Accept
+[] settlement_1_mats_1_accept
+> Refuse
+[] settlement_1
+end
+
+proxy settlement_1_mats_1_accept
+change[] fuel -6
+change[] mats 5
+[] settlement_1
+end
+
+
+event settlement_1_build_1
+title A Settlement - builders
+icon human
+---
+Local builders utilize some building materials to construct some small living quarters on the top levels of the automaton using 20 materials
+--- 
+
+> Accept
+[] settlement_1_build_1_accept
+> Refuse
+[] settlement_1
+end
+
+proxy settlement_1_build_1_accept
+change[] mats -30
+module[] housing +1
+[] settlement_1
 end

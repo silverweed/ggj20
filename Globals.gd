@@ -31,8 +31,10 @@ func restart():
 	get_tree().paused = false
 	stats_cur.clear()
 	for key in stats_max:
-		if key == "fuel" or key == "integrity":
+		if key == "integrity":
 			stats_cur[key] = stats_max[key]
+		elif key == "fuel":
+			stats_cur[key] = 20
 		else:
 			stats_cur[key] = 0
 		

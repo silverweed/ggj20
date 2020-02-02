@@ -3,9 +3,11 @@ event home
 The journey is long...
 ---
 > Continue
-[100 * milestone=1] master_milestone_1
-[100 * milestone=2] master_milestone_2
-[100 * milestone=3] master_milestone_3
+[100 * milestone>=3] master_milestone_3
+[100 * milestone>=2] master_milestone_2
+[] master_milestone_1
+
+
 > [mats>3] Repair
 [] repair
 end
