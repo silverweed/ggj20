@@ -4,12 +4,11 @@
 [ext_resource path="res://ui/dialogs/img/triangle_point_right.png" type="Texture" id=2]
 [ext_resource path="res://ui/ChoiceLabel.gd" type="Script" id=3]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 size = 32
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "Deselected"
+[sub_resource type="Animation" id=2]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("SelectedImg:rect_scale")
@@ -24,7 +23,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1e-05 ) ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("SelectedImg:rect_position")
@@ -76,11 +75,12 @@ margin_right = 1920.0
 margin_bottom = 1080.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
-text = "A BEAUTIFUL CHOICE INDEED"
+custom_fonts/font = SubResource( 1 )
+text = "A BEAUTIFUL CHOICE INDEED."
 valign = 1
+autowrap = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 1.2
-anims/Deselected = SubResource( 1 )
-anims/Selected = SubResource( 2 )
+anims/Deselected = SubResource( 2 )
+anims/Selected = SubResource( 3 )

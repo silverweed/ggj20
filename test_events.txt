@@ -1,3 +1,11 @@
+event home
+---
+...
+---
+> AAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAa AAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAA AAAA
+ [] home
+end
+
 event test_choices
 ---
 test

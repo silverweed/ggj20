@@ -19,6 +19,8 @@ func _ready():
 		globals.events.load_events("military_events.txt")
 		globals.events.load_events("event_repair_complete_icon-1-5.txt")
 		globals.events.load_events("event_dmg_final_1-7.txt")
+		globals.events.load_events("event_pick_complete_1-3.txt")
+		# DEBUG
 #		globals.events.load_events("test_events.txt")
 #		globals.events.debug_output_event_graph("events.dot")
 		

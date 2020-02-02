@@ -37,7 +37,8 @@ func on_all_displayed():
 	if stats_change_shown or len(cur_event_stats_changed) == 0:
 		var choice_desc = []
 		for c in eval_and_filter_choices(cur_event.choices):
-			choice_desc.push_back(c.description)
+			var desc = c.description if c.description.length() > 0 else "..."
+			choice_desc.push_back(desc)
 		choices.show_choices(choice_desc)
 	else:
 		stats_change_shown = true

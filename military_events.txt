@@ -9,6 +9,7 @@ end
 
 event military_1
 title Abandoned Tank
+icon combat
 ---
 You come across a large tracked vehicle from Time Immemorial.
 It seems that the vehicle has been used by humans.
@@ -22,6 +23,8 @@ Holes in the armor carefully patched with wood and scrap metal, it lied abandone
 end
 
 event military_1_1
+title Abandoned Tank
+icon combat
 ---
 Upon close inspection, the vehicle has been left stranded for lack of fuel.
 You salvage what little munitions have been left.
@@ -33,6 +36,8 @@ change[50] ammo +1
 end
 
 event military_1_2
+title Abandoned Tank
+icon combat
 ---
 Upon closer inspection you notice a broken track on the vehicle.
 Immobilized the vehicle has been stripped bare of ammunitions and abandoned.
@@ -46,6 +51,7 @@ end
 
 event military_2
 title Abandoned_Artilery
+icon combat
 ---
 The automaton encounters a large stationary gun pointed at a slight angle.
 Too heavy to be easily lifted, it has been left untouched by the humans.
@@ -59,6 +65,8 @@ Too heavy to be easily lifted, it has been left untouched by the humans.
 end
 
 event military_2_1
+title Abandoned_Artilery
+icon combat
 ---
 You salvage what little munitions have been left.
 ---
@@ -69,6 +77,8 @@ change[25] ammo +2
 end
 
 event military_2_2
+title Abandoned_Artilery
+icon combat
 ---
 You use the claw to uproot the machine from its place, and attach it to the hull.
 The machine suffers some small damage in the process,  but it is now firmly attached to the automaton.
@@ -81,6 +91,8 @@ module [] weapon +1
 end
 
 event  military_2_3
+title Abandoned_Artilery
+icon combat
 ---
 As the claw approaches the device, a spark lights some of the munitions, triggering a large explosion and severely damaging the claw.
 ---
@@ -92,6 +104,7 @@ end
 
 event military_3
 title Abandoned_bunker
+icon combat
 ---
 As the machine lumbers ahead, a sharp metallic sound interrupts the otherwise monotonous rhythm of the journey.
 The foot revealed a thick metal plate, covering the ground, intact, aside from the damage just sustained.
@@ -104,6 +117,8 @@ The foot revealed a thick metal plate, covering the ground, intact, aside from t
 end
 
 event military_3_1
+title Abandoned_bunker
+icon combat
 ---
 The metal door easily bends when the claw grabs it, revealing its content.
 Munitions and machines of war from time immemorial are found inside.
@@ -116,6 +131,8 @@ change[] integrity -1
 end
 
 event military_3_2
+title Abandoned_bunker
+icon combat
 ---
 The metal door easily bends when the claw grabs it, revealing its content.
 Munitions and machines of war from time immemorial are found inside.
@@ -129,6 +146,8 @@ end
 
 
 event military_4
+title Walled citadel
+icon combat
 ---
 You spot a walled citadel entrenched atop a nearby hill.
 Seemingly abandoned, the sensors do not detect any sign of life.
@@ -142,6 +161,8 @@ end
 
 
 event citadel_1_1
+title Walled citadel
+icon combat
 ---
 Behind the crumbling walls, lie several containers of ammo and supplies.
 ---
@@ -152,6 +173,8 @@ change[] mats +5
 end
 
 event citadel_1_2
+title Walled citadel
+icon combat
 ---
 Behind the crumbling walls, lie several containers of ammo and supplies.
 ---
@@ -162,6 +185,8 @@ change[] mats +5
 end
 
 event citadel_1_3
+title Walled citadel
+icon combat
 ---
 As the gian lumbers closer to the citadel, a small group of humans hail the automaton.
 ---
@@ -172,6 +197,8 @@ change[] mats +5
 end
 
 event citadel_1_4
+title Walled citadel
+icon combat
 ---
 The ancient gun on the wall of the citadel suddenly turns to face the automaton.
 Before the machine is able to turn direction a powerful blast echoes from the wall.
@@ -188,6 +215,8 @@ change[] integrity -2
 end
 
 event citadel_1_4_1
+title Walled citadel
+icon combat
 ---
 With a powerful blast, the automaton returns fire on the citadel, destroying the ancient weapon.
 ---
@@ -198,6 +227,8 @@ change[] ammo -1
 end 
 
 event citadel_1_4_1_1
+title Walled citadel
+icon combat
 ---
 You approach the remains of the citadel, salvaging what is left from the rubble.
 You find a large container of materials and fuel.
@@ -213,6 +244,8 @@ module [] mats 1
 end
 
 event citadel_1_4_1_2
+title Walled citadel
+icon combat
 ---
 You approach the remains of the citadel, salvaging what is left from the rubble.
 You find a large amount of materials and fuel.
@@ -226,6 +259,8 @@ end
 
 
 event citadel_1_4_3
+title Walled citadel
+icon combat
 ---
 Without any means to open fire, the automaton charges the citadel.
 Another iron shell hits the automaton before it can reach its target.
@@ -236,6 +271,8 @@ change[] integrity -2
 end 
 
 event citadel_1_4_4
+title Walled citadel
+icon combat
 ---
 The automaton crashes in the citadel before the inhabitants of are able to reload the weapon. Destroying the it.
 ---
@@ -246,6 +283,8 @@ change[] integrity -5
 end 
 
 event citadel_1_4_5
+title Walled citadel
+icon combat
 ---
 The automaton immediately changes course and abandones the citadel before its inhabitants are able to recharge the weapon.
 ---
@@ -254,6 +293,8 @@ The automaton immediately changes course and abandones the citadel before its in
 end 
 
 event military_5
+title Bandit raid
+icon combat
 ---
 A group of bandits approach the automaton on a rusty wheeled vehicle.
 ---
@@ -266,6 +307,8 @@ A group of bandits approach the automaton on a rusty wheeled vehicle.
 end
 
 event enemy_1_shoot_1
+title Bandit raid
+icon combat
 ---
 The automaton aims its gun towards the scrappy vehicle, with a deafening blast, the vehicle is destroyed in fiery explosion.
 
@@ -278,6 +321,8 @@ change [] mats 4
 end
 
 event enemy_1_shoot_2
+title Bandit raid
+icon combat
 ---
 The automaton aims its gun towards the scrappy vehicle and immediately opens fire.
 Barely missing the bandits.
@@ -289,6 +334,8 @@ change [] ammo -1
 end
 
 event enemy_1_escape_1
+title Bandit raid
+icon combat
 ---
 The bandits reach quickly reach the automaton and manage to shoot off a crate of building supplies.
 ---
@@ -299,12 +346,17 @@ change [] integrity -3
 end
 
 event enemy_1_escape_2
+title Bandit raid
+icon combat
 ---
 The bandits reach quickly reach the automaton but could not damage the armor of the machine.
 ---
 > continue on your journey
 [] home
 end
+
+
+
 
 
 

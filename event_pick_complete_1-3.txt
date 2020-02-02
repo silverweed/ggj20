@@ -1,0 +1,80 @@
+proxy pick
+[50] pick_1
+[25] pick_2
+[] pick_3
+end
+
+event pick_1
+title Lucky find
+icon human
+---
+A lonely hut lies atop a small incline.
+---
+> approach
+[] pick_1_1
+[] pick_1_2
+> Ignore the hut and proceed in your journey
+[] home
+end
+
+event pick_1_1
+title Lucky find
+icon human
+---
+Aside the hut you find a couple of barrels of fuel and some building materials.
+---
+change[] fuel 2
+change[] mats 2
+change[25] mats 1
+> Proceed in your journey
+[] home
+end
+
+event pick_1_2
+title Lucky find
+icon human
+---
+As the automaton approaches the hut, a single human exits the small wooden door.
+The automaton opens the lower hatch, welcoming its new inhabitant.
+---
+change[] inhabitants 1
+change[25] mats 1
+change[25] mats 1
+change[25] fuel 1
+> Proceed in your journey
+[] home
+end
+
+event pick_2 
+title Lucky find
+icon generic
+---
+Leftovers of a service station emerges from the brush. Rusted blocks, maybe what used to be cars, are scattered in its surroundings.
+---
+change [] fuel +15
+> After sparing a few hours, fuel is gathered from the petrol station reservoir 
+[] home
+end
+
+event pick_3 
+title Knock Knock
+icon human
+---
+A small set of sparse metal shacks can be seen in the distance. As the moving giant approaches, its sensors cannot detect any life forms.
+---
+> Approach the ruined settlement.
+[] pick_3_1
+> Ignore it and move along.
+[] home
+end
+
+event pick_3_1
+title Knock Knock
+icon human
+---
+As the robot’s appendices cause the terrain to shake,  boards of plywood and rusted metal are shifted sideways revealing a human being standing in front of a hidden hatch. 
+---
+change [] inhabitants +5
+> The scared inhabitants board the automaton hoping for a better life.
+[] home
+end
