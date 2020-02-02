@@ -280,7 +280,7 @@ Maybe a missed opportunity, or maybe a wise choice.
 end
 
 
-pick_6_3
+event pick_6_3
 title Open Fields
 icon heart
 ---
@@ -303,7 +303,7 @@ Some inhabitants decide to start a new settlement with the seeds provided. A new
 end
 
 
-pick_6_3_2
+event pick_6_3_2
 title Open Fields
 icon heart
 ---
@@ -337,7 +337,7 @@ settlement_1_mats_3
 [100 * mats>30] settlement_1_build_1
 > Continue on your journey
 [] home
-
+end
 
 event settlement_1_fuel_1
 title A Settlement - traders
@@ -349,6 +349,7 @@ A local trader offers to give 5 fuel for 7 building materials
 [] settlement_1_fuel_1_accept
 > Refuse
 [] settlement_1
+end
 
 proxy settlement_1_fuel_1_accept
 change[] fuel 5
