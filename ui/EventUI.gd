@@ -5,6 +5,8 @@ signal choice_selected(event, n_choice)
 
 var event_description: String
 var cur_event: EventTypes.Event
+# Maps index of filtered choices with those of the complete choices.
+var cur_event_filtered_choices_indices = []
 var cur_event_stats_changed = []
 var cur_event_mods_changed = []
 var stats_change_shown = false
@@ -36,9 +38,12 @@ func on_event_started(event: EventTypes.Event, stats_changed, mods_changed):
 func on_all_displayed():
 	if stats_change_shown or len(cur_event_stats_changed) == 0:
 		var choice_desc = []
-		for c in eval_and_filter_choices(cur_event.choices):
+		var i = 0
+		var res = eval_and_filter_choices(cur_event.choices)
+		for c in res[0]:
 			var desc = c.description if c.description.length() > 0 else "..."
 			choice_desc.push_back(desc)
+		cur_event_filtered_choices_indices = res[1]
 		choices.show_choices(choice_desc)
 	else:
 		stats_change_shown = true
@@ -78,14 +83,20 @@ func prettify_stat_changes(stat_changes) -> String:
 	
 	
 func on_choice_selected(n: int):
-	emit_signal("choice_selected", cur_event, n)
+	assert(len(cur_event_filtered_choices_indices) > n)
+	var orig_choice_idx = cur_event_filtered_choices_indices[n]
+	emit_signal("choice_selected", cur_event, orig_choice_idx)
 	
 	
-func eval_and_filter_choices(all_choices): # -> [Choice]
+func eval_and_filter_choices(all_choices): # -> [[Choice], [int]]
 	var filtered = []
+	var index_map = []
+	var i = 0
 	for choice in all_choices:
 		var percent = EventParser.compute_chance_expr(
 				choice.chance_expr, globals.stats_cur, globals.player.modules)
 		if rand_range(0, 100) < percent:
 			filtered.append(choice)
-	return filtered
+			index_map.append(i)
+		i += 1
+	return [filtered, index_map]

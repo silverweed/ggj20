@@ -30,6 +30,7 @@ text = "TITLE HERE
 "
 align = 1
 valign = 1
+autowrap = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_top = 77.0
