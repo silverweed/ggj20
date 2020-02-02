@@ -7,6 +7,7 @@ signal single_displayed
 
 export var chars_per_second = 50
 export var hide_on_finish = false
+export var min_time_between_sfx = 0.11
 var automatic_advance = false setget set_automatic_advance
 var hang_time_after_last = 0
 var manual_advance_is_locked = false
@@ -17,6 +18,7 @@ var erase_previous_text_upon_display = true
 # If automatic_advance is true and this is > 0, wait for this time
 # before the next text.
 var force_single_advance_t = 0
+var time_since_latest_sfx = 0
 
 var text_cursor = 0
 var waiting = false
@@ -31,6 +33,10 @@ func _ready():
 	$AnimationPlayer.play("ahead")
 	interruptible_wait_timer.connect("timeout", self, "emit_signal", ["advance"])
 	add_child(interruptible_wait_timer)
+	
+	
+func _process(delta):
+	time_since_latest_sfx += delta
 	
 	
 func display(text):
@@ -49,7 +55,11 @@ func display(text):
 				break
 		
 		label.bbcode_text = text.substr(0, text_cursor)
-		
+		if " \t\n\r".find(text[text_cursor]) < 0 and text_cursor < len(text) - 1:
+			if time_since_latest_sfx > min_time_between_sfx:
+				$AudioStreamPlayer.play()
+				time_since_latest_sfx = 0
+			
 		var time = 1.0 / chars_per_second
 		if text_cursor > 0:
 			time *= char_mul(text[text_cursor-1])

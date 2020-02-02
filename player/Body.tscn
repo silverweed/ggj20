@@ -227,7 +227,7 @@ script = ExtResource( 7 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
-volume_db = -0.2
+volume_db = -0.4
 autoplay = true
 
 [node name="SmokeFX" type="Particles2D" parent="."]

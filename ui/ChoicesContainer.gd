@@ -40,6 +40,7 @@ func show_choices(choices):
 
 
 func set_selected(s: int):
+	$AudioStreamPlayer.play()
 	choice_labels[selected].selected = false
 	selected = s
 	choice_labels[s].selected = true

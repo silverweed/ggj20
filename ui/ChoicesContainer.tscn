@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
+[ext_resource path="res://sfx/Sfx_evt_beep2.wav" type="AudioStream" id=1]
 [ext_resource path="res://ui/ChoicesContainer.gd" type="Script" id=2]
 [ext_resource path="res://ui/ChoiceLabel.tscn" type="PackedScene" id=3]
 
@@ -40,3 +41,7 @@ margin_right = 1024.0
 margin_bottom = 600.0
 
 [node name="EnableInputTimer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = 10.0
