@@ -89,7 +89,7 @@ static func parse_all_events(fname: String, file: File): # -> [Dict(name -> Even
 			cur_choice = EventTypes.Event_Choice.new()
 			line = line.trim_prefix(">").strip_edges()
 			# check if condition is present
-			if line[0] == "[":
+			if line.length() > 0 and line[0] == "[":
 				var splitted = line.substr(1).split("]")
 				cur_choice.chance_expr = splitted[0].strip_edges()
 				cur_choice.description = splitted[1].strip_edges()

@@ -34,7 +34,6 @@ func load_events(fname: String):
 		proxies[key] = new_proxies[key]
 	
 
-
 func debug_print_events(evts, proxs):
 	print("== Events ==")
 	for key in evts:
@@ -63,3 +62,24 @@ func debug_print_events(evts, proxs):
 			print("change [", change.chance_expr, "] ", change.stat_name, " ", change.change)
 		for change in proxy.mod_changes:
 			print("module [", change.chance_expr, "] ", change.stat_name, " ", change.change)
+	
+
+
+func debug_output_event_graph(outfname: String):
+	var file = File.new();
+	file.open(outfname, File.WRITE)
+	file.store_line("digraph events {")
+	
+	for key in events:
+		var event: EventTypes.Event = events[key]
+		for choice in event.choices:
+			for outcome in choice.outcomes:
+				file.store_line(key + " -> " + outcome.linked_event + ";")
+	
+	for key in proxies:
+		var proxy = proxies[key]
+		for outcome in proxy.choice.outcomes:
+			file.store_line(key + " -> " + outcome.linked_event + " [color=orange];")
+		
+	file.store_line("}")
+	file.close()

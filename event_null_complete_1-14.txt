@@ -1,0 +1,240 @@
+proxy null
+[7] null_1
+[7] null_2
+[7] null_3
+[7] null_4
+[7] null_5
+[7] null_6
+[7] null_7
+[7] null_8
+[7] null_9
+[7] null_10
+[7] null_11
+[7] null_12
+[7] null_13
+[] null_14
+end
+
+event null_1
+---
+The journey is long.
+---
+> Continue
+[] home
+end 
+
+event null_2
+---
+Perils await you on this journey. But nothing relevant happened this time.
+---
+> Continue
+[] home
+end 
+
+
+event null_3
+---
+A bunch of metal spikes and plates protrude for the terrain ahead, remnants of human vehicles, mostly rusted away. Easy to step over or walk around.  
+---
+> Nothing useful here
+[] home
+end 
+
+
+event null_4
+---
+You spot the remains of a walled citadel entrenched atop a nearby hill.
+A wide breach in the corroded walls seem to suggest how the settlement might have met its end.
+---
+> As the giant beast crawls around it, it is clear there is nothing of use to grab
+[] home
+end 
+
+
+event null_5
+---
+Dead trees and branches give way to the weight of the automaton.
+The dry wood, too brittle to be useful, now only serves as a reminder of the once lush forests that covered the area.
+---
+> Leave the dead woods
+[] home
+end 
+
+
+event null_6
+---
+The AI sensors flag various warnings. /!\ THREATS INCOMING /!\ The sirens on board trigger simultaneously breaking the stillness in the open air. 
+---
+> Take a defensive position and ready for combat
+[] null_6_1
+> Speed up to avoid the threat
+[] null_6_2
+[] home
+end 
+
+event null_6_1
+---
+The heavy machine stops. No more thuds or shaking. Only a clear and sharp warning piercing the ears of nearby wild life. Nothing happens, the sensors must’ve picked up a false alarm.
+---
+> Better get those sensors checked
+[] home
+end
+
+event null_6_2
+---
+The engine starts pumping more fuel, thick billowing smoke is vomited from the chimney as the moving fortress picks up speed. After a short time the sensors go quiet. Looking back, nothing can be seen.
+---
+change [] fuel -1
+> Was there something hiding or or was it a system malfunction?
+[] home
+end
+
+event null_7
+---
+A small infight breaks in the living quarters.
+Fortunately, nothing irreparable happens.
+---
+> Onwards
+[] home
+end 
+
+
+event null_8
+---
+The loud crashing sounds of the claws echo in the valley.
+Occasionally, the claws slip on the smooth rocks, in search for stable footing.
+---
+> Continue
+[] home
+end 
+
+event null_9
+---
+A skewed large metal sign emerges from the tall grass. It looks like a signpost to the remnants of a service station. 
+---
+> Investigate
+[] null_9_1
+> It’s clearly a waste of time, move along
+[] home
+end 
+
+event null_9_1
+---
+The half submerged tanks are dry. Grass and other thin bushes are growing at the bottom of one of the gas tanks.
+---
+change [] fuel -1
+> Nothing useful here
+[] home
+end
+
+event null_10
+---
+A lonely hut stands atop a nearby hill, a little away from the current course.
+The sensors do not not detect any sign of life.
+---
+> Approach the building
+[] null_10_1
+> Ignore the hut and continue on the journey
+[] home
+end 
+
+event null_10_1
+---
+Barely standing under its own weight, the small building trembles as the automaton approaches.
+Whoever lived in the hut, has long since left, and now only dust remains.
+---
+change [] fuel -1
+> Continue
+[] home
+end 
+
+event null_11
+---
+A thin column of smoke grabs the automaton’s attention. At its source, a group of four mud huts and metal shacks, placed in a circle, can be seen in the distance. 
+---
+> Approach the tiny settlement
+[] null_11_1
+> Avoid this interaction
+[] home
+end 
+
+event null_11_1
+---
+Lifeless bodies are put on display around the settlement. Raiders must have made it here first. 
+---
+change [] fuel -1
+> Help arrived too late
+[] home
+end
+
+event null_12
+---
+A tall, slender tower stands in the distance.
+The sensors read a faint signal coming from the ancient construction.
+---
+> [100 * inhabitants] Ask the humans about the structure
+[] null_12_1
+> Approach
+[] null_12_2
+> Ignore the structure and continue on the journey
+[] home
+end
+
+event null_12_1
+---
+The superstitious humans advise you to avoid the place. Stories tell that nothing good ever came out of it.
+---
+> Approach anyway
+[] null_12_2
+> Acknowledge the advice and leave
+[] home
+end 
+
+event null_12_2
+---
+The menacing tower loses more of its appeal at each step. Holes and gaps become more and more visible. No inquiry is needed, the silence suffices to reveal there is nothing left here. 
+---
+change [] fuel -1
+> The monument reminds of better times now functions only as a landmark for bearing. 
+[] home
+end 
+
+
+event null_13
+---
+Skeletons of broken buildings appear in the distance. What used to be tall towers and blocks are not almost entirely leveled with the ground. 
+---
+> Inspect the ghost buildings
+[] null_13_1
+> Do not disturb the ancient graveyard
+[] home
+end 
+
+event null_13_1
+---
+As expected, no human life can be found. Small rodents take shelter in holes in the concrete, waiting for the automaton to leave. 
+---
+change [] fuel -1
+>
+[] home
+end
+
+
+event null_14
+---
+As the metal creature reaches the top of a hill, a large crater can be seen in the distance. A short detour could get you close enough to see if there’s anything interesting. 
+---
+> Take the detour
+[] null_14_1
+> Ignore the crater
+[] home
+end
+
+event null_14_1
+---
+Grass grows at the bottom of the crater, roughly 1km in diameter. Blocks of stone, or maybe smoothed cement, pop out of the tall grass, especially around the small ponds that have formed here and there.
+---
+change [] fuel -1
+> Maybe a city used to be here, hard to tell
+[] home
+end

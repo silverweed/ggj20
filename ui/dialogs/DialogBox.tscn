@@ -1,15 +1,22 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ui/dialogs/DialogBox.gd" type="Script" id=1]
 [ext_resource path="res://ui/dialogs/DialogBoxTheme.tres" type="Theme" id=2]
-[ext_resource path="res://fonts/FreeSans.tres" type="DynamicFont" id=3]
+[ext_resource path="res://fonts/FreeSans.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://ui/InputMonoRegular.tres" type="DynamicFont" id=4]
+
+[sub_resource type="DynamicFont" id=2]
+size = 60
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "ahead"
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Panel/GoAhead:rect_position")
+tracks/0/path = NodePath("Panel/GoAhead:text")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -17,17 +24,13 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 470, 141.392 ), Vector2( 470, 130.033 ) ]
+"update": 1,
+"values": [ "_", "" ]
 }
 
 [node name="DialogBox" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 0.7258
-margin_top = 0.49382
-margin_right = 0.72583
-margin_bottom = 0.493835
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -45,9 +48,9 @@ __meta__ = {
 [node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 15.0
+margin_left = 12.9465
 margin_top = 15.0
-margin_right = -15.0
+margin_right = -17.0535
 margin_bottom = -15.0
 custom_fonts/normal_font = ExtResource( 4 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -62,13 +65,12 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -33.0
-margin_top = -31.608
-margin_right = -15.0
-margin_bottom = -9.608
-custom_fonts/font = ExtResource( 3 )
+margin_left = -69.0261
+margin_top = -80.1754
+margin_right = -19.0261
+margin_bottom = -18.5255
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "▼"
 __meta__ = {
 "_edit_use_anchors_": false
 }

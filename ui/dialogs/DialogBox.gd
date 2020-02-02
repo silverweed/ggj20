@@ -38,6 +38,7 @@ func display(text):
 		text_cursor = 0
 	waiting = false
 	ahead.hide()
+	$AnimationPlayer.stop()
 	while !is_killed and text_cursor < len(text):
 		# Eat bbcode
 		while text[text_cursor] == '[':
@@ -60,6 +61,7 @@ func display(text):
 	waiting = true
 	if !automatic_advance:
 		ahead.show()
+		$AnimationPlayer.play("ahead")
 	emit_signal("single_displayed")
 	
 	
