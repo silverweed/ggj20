@@ -12,7 +12,7 @@ var stats_max = {
 	"ammo": 100,
 	"inhabitants": 100,
 	"seeds": 100,
-	"materials": 100
+	"mats": 100
 }
 
 var events: EventsDB

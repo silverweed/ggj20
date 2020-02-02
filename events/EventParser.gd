@@ -10,6 +10,7 @@ static func parse_all_events(fname: String, file: File): # -> [Dict(name -> Even
 	# Format:
 	#   event event_name # comment is ignored
 	#   title Event Title (more than 1 word allowed)
+	#   icon icon_id
 	#   ---
 	#   event description (multiline allowed)
 	#   ---
@@ -67,11 +68,20 @@ static func parse_all_events(fname: String, file: File): # -> [Dict(name -> Even
 		elif line.begins_with("title"):
 			if cur_proxy != null:
 				synerr(fname, lineno, "proxies cannot have a title")
-				break
+				continue
 			if cur_event == null:
 				synerr(fname, lineno, "found 'title' not belonging to any event")
 				break
 			cur_event.title = line.trim_prefix("title").strip_edges()
+		
+		elif line.begins_with("icon"):
+			if cur_proxy != null:
+				synerr(fname, lineno, "proxies cannot have an icon")
+				continue
+			if cur_event == null:
+				synerr(fname, lineno, "found 'icon' not belonging to any event")
+				break
+			cur_event.icon = line.trim_prefix("icon").strip_edges()
 			
 		elif line.begins_with("---"):
 			assert(!started_desc)
@@ -351,7 +361,7 @@ static func parse_val(token: Token, stats, mods) -> float:
 			if !mods.has(modname):
 				print("[warning] inexisting module ", modname)
 				return 0.0
-			val = mods[token.value].level
+			val = mods[modname].level
 		else:
 			if !stats.has(token.value):
 				print("[warning] inexisting stat ", token.value)

@@ -54,4 +54,6 @@ margin_top = 813.0
 margin_right = 1920.0
 margin_bottom = 1080.0
 size_flags_vertical = 3
-stat_name = "Materials"
+stat_name = "Mats"
+override_stat_name = true
+overridden_stat_name = "Materials"

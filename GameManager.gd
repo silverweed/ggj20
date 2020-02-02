@@ -14,10 +14,11 @@ func _ready():
 	
 	globals.game_mgr = self
 	if globals.events.events.empty():
-		globals.events.load_events("base_events.txt")
-		globals.events.load_events("event_null_complete_1-14.txt")
+		globals.events.load_events("master_event.txt")
+		globals.events.load_events("event_null_complete_icon_1-14.txt")
 		globals.events.load_events("military_events.txt")
-		globals.events.load_events("event_repair_complete-1-5.txt")
+		globals.events.load_events("event_repair_complete_icon-1-5.txt")
+		globals.events.load_events("event_dmg_final_1-7.txt")
 #		globals.events.load_events("test_events.txt")
 #		globals.events.debug_output_event_graph("events.dot")
 		

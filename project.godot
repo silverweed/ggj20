@@ -70,7 +70,7 @@ _global_script_class_icons={
 
 config/name="ggj20"
 run/main_scene="res://levels/Level.tscn"
-config/icon="res://icon.png"
+config/icon="res://UI_game_icon.png"
 
 [autoload]
 

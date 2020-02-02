@@ -1,0 +1,84 @@
+proxy repair
+[100 * mats<3] repair_no_mat
+[30] repair_1
+[25] repair_2
+[25] repair_3
+[15] repair_fail_1
+[] repair_fail_2
+end
+
+event repair_1
+title Repair successful
+icon repair
+---
+Using some of the available materials, the automaton patches out its hull.
+Wide metal sheets now cover some the gashes.
+---
+change [] mats -10
+change [] integrity 10
+change [25] integrity 3
+> Resume your journey
+[] home
+end
+
+event repair_2
+title Repair successful
+icon repair
+---
+Metal plaques cover some of the smaller wounds of the beast. Unfortunately the complexity of the damage led to some waste of material. 
+---
+change [] mats -10
+change [] integrity 5
+change [25] integrity 1
+> Resume your journey
+[] home
+end
+
+event repair_3
+title Repair successful
+icon repair
+---
+The materials were put to good use. Important breaches are patched.
+---
+change [] mats -5
+change [] integrity 3
+change [25] integrity 1
+> Resume your journey
+[] home
+end
+
+event repair_fail_1
+title Repair failed
+icon repair
+---
+Some of the inner mechanisms of the automaton are damaged and warped beyond recognition, large quantities of materials were wasted in a frustrating trial and error.
+---
+change [] mats -5
+change [] integrity 1
+> Resume your journey
+[] home
+end
+
+event repair_fail_2
+title Repair failed
+icon repair
+---
+Repairs continue for a long time until the job is done. All seems good until a test walk reveals further structural damage. The extra weight tears a section of the hull. 
+---
+change [] mats -5
+change [] integrity -1
+> Resume your journey
+[] home
+end
+
+event repair_no_mat
+title Cannot repair
+icon repair
+---
+Not enough materials.
+---
+change [] mats -5
+change [] integrity -1
+> Resume your journey
+[] home
+End

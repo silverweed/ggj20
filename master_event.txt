@@ -1,0 +1,16 @@
+event home
+---
+The journey is long.
+---
+> Continue
+[] master
+> [mats>3] Repair
+[] repair
+end
+
+proxy master
+change [] fuel -1
+[50] null
+[10] Dmg
+[] military
+end

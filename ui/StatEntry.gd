@@ -1,13 +1,18 @@
 extends Control
 
 export var stat_name: String
+export var override_stat_name: bool = false
+export var overridden_stat_name: String
 
 onready var globals = $"/root/Globals"
 onready var stat_value = $HBoxContainer/StatValue
 
 func _ready():
 	assert(stat_name.length() > 0, "Empty stat name on StatEntry!")
-	$HBoxContainer/StatName.text = stat_name.capitalize() + ":"
+	if override_stat_name:
+		$HBoxContainer/StatName.text = overridden_stat_name
+	else:
+		$HBoxContainer/StatName.text = stat_name.capitalize() + ":"
 
 	update_stat_value()
 

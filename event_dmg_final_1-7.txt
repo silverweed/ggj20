@@ -1,0 +1,117 @@
+proxy Dmg
+[14] Dmg_1
+[14] Dmg_2
+[14] Dmg_3
+[14] Dmg_4
+[14] Dmg_5
+[14] Dmg_6
+[] Dmg_7
+end
+
+event Dmg_1
+title Alert
+icon heart
+---
+A rupture occurs in the engine room, a wave of steam invades the hallways of the automaton, swallowing the humans.
+---
+change [] inhabitants -3
+change[25] integrity -1
+> proceed in your journey.
+[] home
+end
+
+event Dmg_2
+title Alert
+icon heart
+---
+As the machine wades through the rocky terrain the clawed legs screech and slide, struggling to maintain stable footing.
+
+Suddenly leg Unit 4 skids by several meters on the smooth rock. The unexpected event caused one the suspension cables to snap, damaging the engines.
+---
+change [] integrity -1
+change[25] integrity -1
+> proceed in your journey.
+[] home
+end
+
+event Dmg_3
+title Alert
+icon heart
+---
+The metal creaks and warps as the automaton lumbers through the wasteland.
+A large panel of the hull cracks under fatigue and rust.
+---
+change[40] integrity -1
+> proceed in your journey.
+[] home
+end
+
+event Dmg_4
+title Alert
+icon heart
+---
+The ground weakened by the rain crumbles under the weight of the automaton.
+Suspension of leg Units 5 and 2 are damaged.
+---
+change[25] integrity -1
+change[] integrity -2
+> proceed in your journey.
+[] home
+end
+
+event Dmg_5
+title Alert
+icon heart
+---
+An infight occurs in the living quarters, a small fire breaks, damaging the automaton and burning useful resources.
+---
+change[] integrity -2
+change[] mats -2
+> proceed in your journey.
+[] home
+end
+
+event Dmg_6
+title Alert
+icon heart
+---
+An infight occurs in the living quarters, one human is killed.
+---
+change[] integrity -2
+change[] inhabitants -1
+> proceed in your journey.
+[] home
+end
+
+event Dmg_7 
+title Alert
+icon heart
+---
+There’s only one way forward. No choice lies ahead. Sharp rocks, snow covering every inch of the narrow pass.
+---
+> Cross the narrow path.
+[mats>50] Dmg_7_1
+[] Dmg_7_2
+end
+
+event Dmg_7_1
+title Alert
+icon heart
+---
+One leg after the other, the heavy machinery trembled until a misstep leads it dangerously down a ravine. 
+---
+change [] integrity -4
+>  Wasn’t it for the sheer size of the automaton, it would’ve been the of this journey.
+[] home
+end
+
+event Dmg_7_2
+title Alert
+icon heart
+---
+The relatively light weight of the moving-city prevented it from suffering extra damage. However, the hull still took a blow.
+---
+change [] integrity -2
+> More severe damage might’ve been avoided this way.
+[] home
+end

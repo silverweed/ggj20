@@ -2,6 +2,7 @@ class_name EventTypes
 
 class Event:
 	var title: String
+	var icon: String
 	var description: String
 	var choices = []      # [Choice]
 	var stat_changes = [] # [Stat_Change]
