@@ -214,7 +214,7 @@ static func compute_chance_expr(chance_expr: String, stats, mods) -> float:
 	# operators have their usual precedence.
 	# == Special Identifier rules ==
 	# - If an ident has the form
-	#    ident>N   (or >=, <, <=)
+	#    ident>N   (or >=, <, <=, ==)
 	#   it is treated as a boolean 0 or 1
 	# - If an ident starts with m_, it is treated as a
 	#   module level, rather than a stat value 
@@ -331,7 +331,7 @@ static func is_op(token_type) -> bool:
 
 static func parse_val(token: Token, stats, mods) -> float:
 	if token.type == Token_Type.Ident:
-		var splitters = [">=",">","<=","<"]
+		var splitters = [">=",">","<=","<", "=="]
 		for splitter in splitters:
 			var left_right = token.value.split(splitter)
 			if len(left_right) == 1: continue
@@ -354,6 +354,7 @@ static func parse_val(token: Token, stats, mods) -> float:
 				">=": return float(val >= num)
 				"<": return float(val < num)
 				"<=": return float(val <= num)
+				"==": return float(val == num)
 				
 		var val = NAN
 		if token.value.begins_with("m_"):

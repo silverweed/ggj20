@@ -6,15 +6,14 @@
 [ext_resource path="res://ui/InputMonoRegular.tres" type="DynamicFont" id=4]
 [ext_resource path="res://sfx/Sfx_evt_beep2.wav" type="AudioStream" id=5]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 60
 outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 3 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "ahead"
+[sub_resource type="Animation" id=2]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Panel/GoAhead:text")
@@ -70,14 +69,14 @@ margin_left = -69.0261
 margin_top = -80.1754
 margin_right = -19.0261
 margin_bottom = -18.5255
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/ahead = SubResource( 1 )
+anims/ahead = SubResource( 2 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )

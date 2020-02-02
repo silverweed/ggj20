@@ -1,0 +1,107 @@
+event home
+---
+The journey is long...
+---
+> Continue
+[100 * milestone=1] master_milestone_1
+[100 * milestone=2] master_milestone_2
+[100 * milestone=3] master_milestone_3
+> [mats>3] Repair
+[] repair
+end
+
+proxy master_milestone_1
+change [100*fuel>=30] milestone +1
+change [] fuel -1
+[100*fuel>=30] Mil_2
+[55] null
+[35] pick
+[] Dmg
+End
+
+proxy master_milestone_2
+change [100*inhabitants>=50] milestone +1
+change [] fuel -1
+[100*inhabitants>=50] Mil_3
+[40] null
+[25] pick
+[25] Dmg
+[] military
+end
+
+proxy master_milestone_3
+change [] fuel -1
+[40] null
+[20] pick
+[20] Dmg
+[] military
+end
+
+
+event Mil_1 
+title A New Beginning
+icon upgrade
+---
+Systems rebooting…
+AI base functionality… OK
+Engines… OK
+Fuel… VERY LOW
+Emergency Fuel… OK
+
+Mobility… OK 
+Defences... LOW
+Population… NULL
+Storage… NULL
+---
+change [] milestone +1
+> !EMERGENCY OVERRIDE! Restore fuel reserve.
+[] Mil_1_1
+end
+
+event Mil_1_1
+title A New Beginning
+icon upgrade
+---
+Gather fuel to ensure basic functionality over time.
+---
+> Continue...
+[] home
+end
+
+event Mil_2
+title Duty
+icon upgrade
+---
+Day 1.708.584
+Fuel level: acceptable.
+Assigned task: Assist humanity.
+...
+Interpretation: Restore Human’s habitat.
+---
+> Continue…
+[] Mil_2_1
+end
+
+event Mil_2_1
+title Duty
+icon upgrade
+---
+Pending solutions:
+Heal the land.
+Reunite communities.
+Neutralise threats.
+---
+> Resuming Mission…
+[] home
+end
+
+event Mil_3
+title Progress
+icon upgrade
+---
+Mission status - human population: OK
+Mission update: Restore habitat & assist.
+---
+> Resuming Mission…
+[] home
+end

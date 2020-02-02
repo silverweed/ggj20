@@ -3,18 +3,19 @@ extends Node
 
 signal gameover
 
+export var first_event = "Mil_1"
+
 var is_gameover = false
 var event_ui: EventUI
 
 onready var globals = $"/root/Globals"
-
 
 func _ready():
 	randomize()
 	
 	globals.game_mgr = self
 	if globals.events.events.empty():
-		globals.events.load_events("master_event.txt")
+		globals.events.load_events("master_proxy_milestone.txt")
 		globals.events.load_events("event_null_final_1-14.txt")
 		globals.events.load_events("military_events.txt")
 		globals.events.load_events("event_repair_complete_icon-1-5.txt")
@@ -35,7 +36,7 @@ func _ready():
 	call_deferred("run_master_event")
 		
 func run_master_event():
-	globals.run_event("home")
+	globals.run_event(first_event)
 
 
 func _exit_tree():
