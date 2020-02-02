@@ -258,7 +258,11 @@ event military_5
 A group of bandits approach the automaton on a rusty wheeled vehicle.
 ---
 > [100 * m_weapon - 100 * ammo>0] Shoot them
+[50] enemy_1_shoot_1
+[50] enemy_1_shoot_2
 > Attempt to escape
+[75] enemy_1_escape_1
+[] enemy_1_escape_2
 end
 
 event enemy_1_shoot_1

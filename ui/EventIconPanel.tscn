@@ -25,7 +25,7 @@ margin_right = 1920.0
 margin_bottom = 97.0
 size_flags_vertical = 5
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0.0823529, 0.796078, 0.501961, 1 )
+custom_colors/font_color = Color( 0, 0.678431, 0.4, 1 )
 text = "TITLE HERE
 "
 align = 1

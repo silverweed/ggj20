@@ -15,10 +15,9 @@ func _ready():
 	globals.game_mgr = self
 	if globals.events.events.empty():
 		globals.events.load_events("base_events.txt")
-		globals.events.load_events("event_pack_1.txt")
-		globals.events.load_events("event_pack_2.txt")
 		globals.events.load_events("event_null_complete_1-14.txt")
 		globals.events.load_events("military_events.txt")
+		globals.events.load_events("event_repair_complete-1-5.txt")
 #		globals.events.load_events("test_events.txt")
 #		globals.events.debug_output_event_graph("events.dot")
 		

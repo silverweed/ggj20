@@ -65,6 +65,9 @@ static func parse_all_events(fname: String, file: File): # -> [Dict(name -> Even
 			cur_choice = EventTypes.Event_Choice.new()
 			
 		elif line.begins_with("title"):
+			if cur_proxy != null:
+				synerr(fname, lineno, "proxies cannot have a title")
+				break
 			if cur_event == null:
 				synerr(fname, lineno, "found 'title' not belonging to any event")
 				break
@@ -72,6 +75,9 @@ static func parse_all_events(fname: String, file: File): # -> [Dict(name -> Even
 			
 		elif line.begins_with("---"):
 			assert(!started_desc)
+			if cur_proxy != null:
+				synerr(fname, lineno, "proxies cannot have a description")
+				break
 			if cur_event == null:
 				synerr(fname, lineno, "found 'start description' not belonging to any event")
 				break
@@ -161,7 +167,7 @@ static func parse_all_events(fname: String, file: File): # -> [Dict(name -> Even
 				assert(cur_proxy != null)
 				cur_proxy.mod_changes.push_back(mod_change)
 			
-		elif line == "end":
+		elif line == "end" or line == "End":
 			if cur_choice != null:
 				if cur_event:
 					cur_event.choices.push_back(cur_choice)
@@ -177,7 +183,7 @@ static func parse_all_events(fname: String, file: File): # -> [Dict(name -> Even
 		
 		
 	if cur_event != null or cur_proxy != null:
-		print("[warning] Not all events were parsed correctly.")
+		print("[warning] file ", fname, ": not all events were parsed correctly.")
 	
 	return [events, proxies]
 
