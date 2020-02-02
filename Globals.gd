@@ -7,11 +7,11 @@ signal event_choice_selected(event, n_choice)
 var stats_cur = {}
 
 var stats_max = {
-	"integrity": 20,
-	"fuel": 20,
+	"integrity": 100,
+	"fuel": 100,
 	"ammo": 100,
-	"inhabitants": 50,
-	"seeds": 30,
+	"inhabitants": 100,
+	"seeds": 100,
 	"materials": 100
 }
 
