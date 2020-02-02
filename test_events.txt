@@ -1,3 +1,14 @@
+event test_choices
+---
+test
+---
+> A
+  [] home
+> [50] B
+  [] home
+> [20+fuel] C
+  [] home
+end
 
 event the_dragon_attacks  # a random comment
 title The dragon attacks!!!

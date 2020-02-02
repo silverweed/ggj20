@@ -10,6 +10,7 @@ var stats_change_shown = false
 
 onready var description: DialogBox = $DialogBox
 onready var choices: ChoiceContainer = $ChoicesContainer
+onready var globals = $"/root/Globals"
 
 
 func _ready():
@@ -31,7 +32,7 @@ func on_event_started(event: EventTypes.Event, stats_changed):
 func on_all_displayed():
 	if stats_change_shown or len(cur_event_stats_changed) == 0:
 		var choice_desc = []
-		for c in cur_event.choices:
+		for c in eval_and_filter_choices(cur_event.choices):
 			choice_desc.push_back(c.description)
 		choices.show_choices(choice_desc)
 	else:
@@ -69,3 +70,12 @@ func prettify_stat_changes(stat_changes) -> String:
 	
 func on_choice_selected(n: int):
 	emit_signal("choice_selected", cur_event, n)
+	
+	
+func eval_and_filter_choices(all_choices): # -> [Choice]
+	var filtered = []
+	for choice in all_choices:
+		var percent = EventParser.compute_chance_expr(choice.chance_expr, globals.stats_cur)
+		if rand_range(0, 100) < percent:
+			filtered.append(choice)
+	return filtered

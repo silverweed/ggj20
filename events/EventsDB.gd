@@ -20,7 +20,7 @@ func load_events(fname: String):
 	var new_events = EventParser.parse_all_events(fname, f)
 	f.close()
 	print("[ok] loaded events from ", fname)
-#	debug_print_events(events)
+#	debug_print_events(new_events)
 	for key in new_events:
 		if events.has(key):
 			print("[warning] overwriting duplicate event ", key)
@@ -30,14 +30,14 @@ func load_events(fname: String):
 
 func debug_print_events(evts):
 	for key in evts:
-		var event: EventTypes.Event = events[key]
+		var event: EventTypes.Event = evts[key]
 		print("event ", key)
 		print("title ", event.title)
 		print("---")
 		print(event.description)
 		print("---")
 		for choice in event.choices:
-			print(" > ", choice.description)
+			print(" > [", choice.chance_expr, "] ", choice.description)
 			for outcome in choice.outcomes:
 				print("[", outcome.chance_expr, "] ", outcome.linked_event)
 		for change in event.stat_changes:

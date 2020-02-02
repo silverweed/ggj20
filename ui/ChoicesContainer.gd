@@ -32,6 +32,9 @@ func show_choices(choices):
 		choice_labels[i].text = choices[i]
 		choice_labels[i].show()
 	
+	for i in range(displayed, 4):
+		 choice_labels[i].hide()
+	
 	self.selected = 0
 	show()
 

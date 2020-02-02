@@ -16,6 +16,8 @@ func _ready():
 	if globals.events.events.empty():
 		globals.events.load_events("base_events.txt")
 		globals.events.load_events("event_pack_1.txt")
+		globals.events.load_events("event_pack_2.txt")
+#		globals.events.load_events("test_events.txt")
 		
 	var event_uis = get_tree().get_nodes_in_group("event_ui")
 	if len(event_uis) > 0:

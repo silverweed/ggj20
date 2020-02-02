@@ -1,0 +1,172 @@
+event Mil_1 
+title A new beginning
+---
+Systems rebooting…
+AI base functionality… OK
+Engines… OK
+Fuel… VERY LOW
+Emergency Fuel… OK
+
+Mobility… OK 
+Defences... LOW
+Population… NULL
+Storage… NULL
+---
+> !EMERGENCY OVERRIDE! Restore fuel reserve.
+[] Mil_1_1
+end
+
+event Mil_1_1
+---
+Gather fuel to ensure basic functionality over time.
+---
+> Continue...
+[] home
+end
+
+
+
+
+
+
+event Mil_2
+title Duty
+---
+Day 1.708.584
+Fuel level: acceptable.
+Assigned task: Assist humanity.
+...
+Interpretation: Restore Human’s habitat.
+---
+> Continue…
+[] Mil_2_1
+end
+
+event Mil_2_1
+---
+Pending solutions:
+Heal the land.
+Reunite communities.
+Neutralise threats.
+---
+> Resuming Mission…
+[] home
+end
+
+
+
+
+
+event Env_1 
+title Roots & Rain
+---
+Jagged rocks and large boulders, fragments of a recently collapsed rocky hill, block your path. Freshly cut timber, splintered wood and seed-loaded boughs can be seen protruding here and there along with large rounded saw blades and other pieces of broken machinery.
+---
+> Climb the rough terrain and salvage what’s available.
+[] Env_1_1
+> Move around the hill and collect whatever has rolled at the bottom of the landslide. 
+[] Env_1_2
+end
+
+event Env_1_1
+---
+As the sturdy legs sink into the mud and avoid gaps in the rubble, the arm reaches below, taking a hold on whatever is useful. 
+---
+> Climb the hill to gather more resources
+[100-integrity] Env_1_1_1
+[] Env_1_1_2
+end
+
+event Env_1_1_1
+---
+The metal legs slip and the body wacks against the ruined sawmill. The Hull integrity suffered damage. Nevertheless, Fuel, Seeds and Misc. Mats were gathered while trespassing the rough terrain. 
+---
+change [] seeds +10
+change [] integrity -10
+change [] mats +10
+change [70] fuel +2
+change [30] fuel +5
+> Continue…
+[] home
+end
+
+event Env_1_1_2
+---
+No incidents occurred. Feet and claws hold steadily on solid terrain as all essentials are loaded in the cargo hold. Seeds and Misc. Mats were gathered  while crossing the remains of the sawmill. 
+---
+change [] seeds +10
+change [] mats +10
+change [70] fuel +3
+change [30] fuel +7
+> Continue…
+[] home
+end
+
+event Env_1_2
+---
+Picking the safest route also means obtaining the least useful things. Boulders are easy to avoid and the terrain below is always visible, preventing a ruinous fall. 
+---
+change [] seeds +10
+change [40] mats +5
+change [60] mats +3
+> Continue…
+[] home
+end
+
+event Env_1_2_1
+---
+Not much that it isn’t rubble lays around the area. Circumnavigating the hill resulted in obtaining a few seeds and mats.
+---
+change [] seeds +5
+change [] mats +2
+> Continue…
+[] home
+end
+
+
+
+
+
+
+
+
+Dmg_7 
+title Mountain Pass
+---
+There’s only one way forward. No choice lies ahead. Sharp rocks, snow covering every inch of the narrow pass.
+---
+> Cross the narrow path.
+[mats>50] Dmg_7_1
+[] Dmg_7_2
+end
+
+event Dmg_7_1
+---
+One leg after the other, the heavy machinery trembled until a misstep leads it dangerously down a ravine. 
+---
+change [] integrity -7
+>  Wasn’t it for the sheer size of the automaton, it would’ve been the of this journey.
+[] home
+end
+
+event Dmg_7_2
+---
+The relatively light weight of the moving-city prevented it from suffering extra damage. However, the hull still took a blow.
+---
+change [] integrity -4
+> More severe damage might’ve been avoided this way.
+[] home
+end
+
+
+
+
+event pick_2 
+title Another Day
+---
+Leftovers of a service station emerges from the brush. Rusted blocks, maybe what used to be cars, are scattered in its surroundings.
+---
+change [] fuel +15
+> After sparing a few hours, fuel is gathered from the petrol station’s reservoir. 
+[] home
+end

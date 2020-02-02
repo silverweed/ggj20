@@ -14,6 +14,7 @@ class Stat_Change:
 	
 	
 class Event_Choice:
+	var chance_expr: String
 	var description: String
 	var outcomes = [] # [Outcome]
 	

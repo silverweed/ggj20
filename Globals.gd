@@ -117,5 +117,5 @@ func do_screenshake():
 	if !screenshake_sys:
 		return
 	
-	screenshake_sys.screenshake(15.0, 0.3, false, true)
+	screenshake_sys.screenshake(10.0, 0.3, false, true)
 	

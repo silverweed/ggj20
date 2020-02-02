@@ -18,7 +18,8 @@ static func parse_all_events(fname: String, file: File): # -> Dict(name -> Event
 	#     [expr] outcome_1
 	#     ...
 	#     []     outcome_N
-	#   > ...
+	#   > [expr] Choice B # choice % are independent
+	#      ...
 	#   end
 	# ...repeats
 	var cur_event: EventTypes.Event = null
@@ -70,7 +71,15 @@ static func parse_all_events(fname: String, file: File): # -> Dict(name -> Event
 			if cur_choice != null:
 				cur_event.choices.push_back(cur_choice)
 			cur_choice = EventTypes.Event_Choice.new()
-			cur_choice.description = line.trim_prefix(">").strip_edges()
+			line = line.trim_prefix(">").strip_edges()
+			# check if condition is present
+			if line[0] == "[":
+				var splitted = line.substr(1).split("]")
+				cur_choice.chance_expr = splitted[0].strip_edges()
+				cur_choice.description = splitted[1].strip_edges()
+			else:
+				cur_choice.chance_expr = ""
+				cur_choice.description = line
 		
 		elif line.begins_with("["):
 			if cur_choice == null:
