@@ -267,7 +267,7 @@ Another iron shell hits the automaton before it can reach its target.
 ---
 change[] integrity -2
 > Continue
-[] citadel_1_4_1_4
+[] citadel_1_4_4
 end 
 
 event citadel_1_4_4
