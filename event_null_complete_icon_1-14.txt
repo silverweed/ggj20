@@ -1,3 +1,4 @@
+
 proxy null
 [7] null_1
 [7] null_2
@@ -16,6 +17,7 @@ proxy null
 end
 
 event null_1
+title Nothing Here
 icon generic
 ---
 The journey is long.
@@ -25,6 +27,7 @@ The journey is long.
 end 
 
 event null_2
+title Nothing Here
 icon generic
 ---
 Perils await you on this journey. But nothing relevant happened this time.
@@ -35,6 +38,7 @@ end
 
 
 event null_3
+title Nothing Here
 icon generic
 ---
 A bunch of metal spikes and plates protrude for the terrain ahead, remnants of human vehicles, mostly rusted away. Easy to step over or walk around.  
@@ -45,6 +49,7 @@ end
 
 
 event null_4
+title Nothing Here
 icon human
 ---
 You spot the remains of a walled citadel entrenched atop a nearby hill.
@@ -55,6 +60,7 @@ A wide breach in the corroded walls seem to suggest how the settlement might hav
 end 
 
 event null_5
+title Nothing Here
 icon generic
 ---
 Dead trees and branches give way to the weight of the automaton.
@@ -66,6 +72,7 @@ end
 
 
 event null_6
+title Alert
 icon combat
 ---
 The AI sensors flag various warnings. /!\ THREATS INCOMING /!\ The sirens on board trigger simultaneously breaking the stillness in the open air. 
@@ -78,6 +85,7 @@ The AI sensors flag various warnings. /!\ THREATS INCOMING /!\ The sirens on boa
 end 
 
 event null_6_1
+title Nothing Here
 icon combat
 ---
 The heavy machine stops. No more thuds or shaking. Only a clear and sharp warning piercing the ears of nearby wild life. Nothing happens, the sensors must’ve picked up a false alarm.
@@ -87,6 +95,7 @@ The heavy machine stops. No more thuds or shaking. Only a clear and sharp warnin
 end
 
 event null_6_2
+title Nothing Here
 icon combat
 ---
 The engine starts pumping more fuel, thick billowing smoke is vomited from the chimney as the moving fortress picks up speed. After a short time the sensors go quiet. Looking back, nothing can be seen.
@@ -97,27 +106,77 @@ change [] fuel -1
 end
 
 event null_7
+title Nothing Here
 icon human
 ---
 A small infight breaks in the living quarters.
 Fortunately, nothing irreparable happens.
 ---
+> Unload the guilty inhabitants, make an example of them
+[] null_7_1
 > Onwards
 [] home
 end 
 
+event null_7_1
+title Their Loss
+icon human
+---
+The two humans beg for mercy to the machine and the rest of the inhabitants.
+---
+> Unload them anyway
+[] null_7_1_1
+> Give them another chance and resume your journey
+[] home
+end
+
+event null_7_1_1
+title A Bitter End
+icon human
+---
+They are escorted by the remaining inhabitants. No chance to redeem themselves a third time.
+---
+change [] inhabitants -2
+> Leave them behind and continue
+[] home
+end
 
 event null_8
+title Risky Choice
 icon generic
 ---
 The loud crashing sounds of the claws echo in the valley.
 Occasionally, the claws slip on the smooth rocks, in search for stable footing.
 ---
-> Continue
+> Continue on the rocky terrain
+[] null_8_1
+> Attempt a detour through swampy terrain
+[] null_8_2
+end
+
+event null_8_1
+title Risky Choice
+icon generic
+---
+Enduring on the same terrain seemed to be the right choice. Large slabs are replaced by jagged terrain, easier to grasp.
+---
+> Continue...
+[] home
+end 
+
+event null_8_2
+title Risky Choice
+icon generic
+---
+Sliding is no longer a risk but the heavy legs sink easily in the terrain. Slowing down the automatons movement and requiring a fuel boost. 
+---
+change [] fuel -2
+> Continue...
 [] home
 end 
 
 event null_9
+title Lucky Find
 icon generic
 ---
 A skewed large metal sign emerges from the tall grass. It looks like a signpost to the remnants of a service station. 
@@ -129,6 +188,7 @@ A skewed large metal sign emerges from the tall grass. It looks like a signpost 
 end 
 
 event null_9_1
+title Nothing Here
 icon generic
 ---
 The half submerged tanks are dry. Grass and other thin bushes are growing at the bottom of one of the gas tanks.
@@ -139,6 +199,7 @@ change [] fuel -1
 end
 
 event null_10
+title Lucky Find
 icon human
 ---
 A lonely hut stands atop a nearby hill, a little away from the current course.
@@ -151,6 +212,7 @@ The sensors do not not detect any sign of life.
 end 
 
 event null_10_1
+title Nothing Here
 icon human
 ---
 Barely standing under its own weight, the small building trembles as the automaton approaches.
@@ -162,6 +224,7 @@ change [] fuel -1
 end 
 
 event null_11
+title Lucky Find
 icon human
 ---
 A thin column of smoke grabs the automaton’s attention. At its source, a group of four mud huts and metal shacks, placed in a circle, can be seen in the distance. 
@@ -173,6 +236,7 @@ A thin column of smoke grabs the automaton’s attention. At its source, a group
 end 
 
 event null_11_1
+title Nothing Here
 icon human
 ---
 Lifeless bodies are put on display around the settlement. Raiders must have made it here first. 
@@ -183,6 +247,7 @@ change [] fuel -1
 end
 
 event null_12
+title Mystery
 icon human
 ---
 A tall, slender tower stands in the distance.
@@ -197,6 +262,7 @@ The sensors read a faint signal coming from the ancient construction.
 end
 
 event null_12_1
+title Mystery
 icon human
 ---
 The superstitious humans advise you to avoid the place. Stories tell that nothing good ever came out of it.
@@ -208,6 +274,7 @@ The superstitious humans advise you to avoid the place. Stories tell that nothin
 end 
 
 event null_12_2
+title Nothing Here
 icon human
 ---
 The menacing tower loses more of its appeal at each step. Holes and gaps become more and more visible. No inquiry is needed, the silence suffices to reveal there is nothing left here. 
@@ -219,6 +286,7 @@ end
 
 
 event null_13
+title Mystery
 icon generic
 ---
 Skeletons of broken buildings appear in the distance. What used to be tall towers and blocks are not almost entirely leveled with the ground. 
@@ -230,6 +298,7 @@ Skeletons of broken buildings appear in the distance. What used to be tall tower
 end 
 
 event null_13_1
+title Nothing Here
 icon generic
 ---
 As expected, no human life can be found. Small rodents take shelter in holes in the concrete, waiting for the automaton to leave. 
@@ -241,6 +310,7 @@ end
 
 
 event null_14
+title Mystery
 icon generic
 ---
 As the metal creature reaches the top of a hill, a large crater can be seen in the distance. A short detour could get you close enough to see if there’s anything interesting. 
@@ -252,6 +322,7 @@ As the metal creature reaches the top of a hill, a large crater can be seen in t
 end
 
 event null_14_1
+title Nothing Here
 icon generic
 ---
 Grass grows at the bottom of the crater, roughly 1km in diameter. Blocks of stone, or maybe smoothed cement, pop out of the tall grass, especially around the small ponds that have formed here and there.

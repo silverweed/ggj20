@@ -361,8 +361,8 @@ The local inhabitants reach out to trade and offer gifts.
 > [100 * fuel>10] Trade materials
 [] settlement_1_mats_1
 settlement_1_mats_3
-> Construct living quarters
-[100 * mats>30] settlement_1_build_1
+> [100 * mats>30] Construct living quarters
+settlement_1_build_1
 > Continue on your journey
 [] home
 end
