@@ -5,7 +5,7 @@ proxy pick
 [10] pick_4
 [10] pick_5
 [10 * seeds>5] pick_6 
-[] pick_5
+[] pick_7
 end
 
 event pick_1
@@ -30,7 +30,6 @@ Aside the hut you find a couple of barrels of fuel and some building materials.
 change[] fuel 5
 change[] mats 5
 change[25] mats 2
-change[25] fuel 3
 > Proceed in your journey
 [] home
 end
@@ -73,6 +72,8 @@ icon generic
 After sparing a few hours, fuel is gathered from the petrol station reservoir. 
 ---
 change [] fuel +8
+> Attempt to get more
+[] pick_2_2
 > Resume your journey...
 [] home
 end
@@ -107,8 +108,34 @@ icon human
 ---
 As the robot’s appendices cause the terrain to shake,  boards of plywood and rusted metal are shifted sideways revealing a human being standing in front of a hidden hatch. 
 ---
+> Send an audio signal to call the humans.
+[75] pick_3_1_1
+[] pick_3_1_2
+> The scenario appears untrustworthy, leave the area
+[] home
+end
+
+event pick_3_1_1
+title Knock Knock
+icon human
+---
+A few heads pop out from their hiding spots. The scared inhabitants board the automaton hoping for a better life.
+---
 change [] inhabitants +5
-> The scared inhabitants board the automaton hoping for a better life.
+change [] fuel +2
+> Resume your journey..
+[] home
+end
+
+event pick_3_1_2
+title Knock Knock
+icon combat
+---
+The last step caused one of the legs to get caught in a hidden pitfall. A trap set up by the locals who know toss rocks at the other legs. The suspensions took some damage.
+---
+change [] integrity -2
+change [] fuel -1
+> Leave behind those who don’t want help.
 [] home
 end
 
@@ -131,6 +158,7 @@ icon generic
 Carefully avoiding to damage any of the now rooted vegetation, a stash of spare seeds is loaded onto the automaton.
 ---
 change [] seeds +10
+change [] fuel -2
 > These seeds can be used elsewhere
 [] home
 end
@@ -314,14 +342,14 @@ The automaton moves forward without ever stopping.
 end
 
 
-proxy pick_7_null
+proxy pick_7
 change[] mats 3
 change[50] fuel 1
 [] settlement_1
 end
 
 
-event pick_7
+event settlement_1
 title A Settlement
 icon human
 ---
@@ -339,8 +367,9 @@ settlement_1_mats_3
 [] home
 end
 
+
 event settlement_1_fuel_1
-title A Settlement - traders
+title A Settlement
 icon human
 ---
 A local trader offers to give 5 fuel for 7 building materials
@@ -358,7 +387,7 @@ change[] mats -7
 end
 
 event settlement_1_mats_1
-title A Settlement - traders
+title A Settlement
 icon human
 ---
 A local trader offers to give 5 building materials for 6 fuel.
@@ -377,12 +406,11 @@ end
 
 
 event settlement_1_build_1
-title A Settlement - builders
+title A Settlement
 icon human
 ---
 Local builders utilize some building materials to construct some small living quarters on the top levels of the automaton using 20 materials
 --- 
-
 > Accept
 [] settlement_1_build_1_accept
 > Refuse

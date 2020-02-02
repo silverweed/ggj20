@@ -222,7 +222,7 @@ tracks/13/keys = {
 }
 
 [node name="Body" type="Node2D"]
-position = Vector2( -7.40247, -161.004 )
+position = Vector2( -7.40247, -163.004 )
 script = ExtResource( 7 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -272,6 +272,7 @@ position = Vector2( -1.19334, -4.77322 )
 z_index = -500
 
 [node name="ModuleHousing" type="Position2D" parent="ModulesBg"]
+visible = false
 position = Vector2( -333, -155 )
 scale = Vector2( 0.7, 0.7 )
 
