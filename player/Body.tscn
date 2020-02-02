@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/T_machine_boiler_tube.png" type="Texture" id=1]
 [ext_resource path="res://assets/Machine_core.png" type="Texture" id=2]
@@ -14,22 +14,24 @@
 [ext_resource path="res://assets/T_mod_cannon_base.png" type="Texture" id=12]
 [ext_resource path="res://assets/T_mod_cannon_barrel.png" type="Texture" id=13]
 [ext_resource path="res://assets/T_vfx_steam_cloud.png" type="Texture" id=14]
+[ext_resource path="res://assets/T_mod_housing.png" type="Texture" id=15]
+[ext_resource path="res://assets/T_mod_housing_full.png" type="Texture" id=16]
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.387654, 1 )
 colors = PoolColorArray( 0, 0, 0, 1, 0.819608, 0.819608, 0.819608, 1, 0.709804, 0.709804, 0.709804, 0 )
 
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
-[sub_resource type="Curve" id=4]
+[sub_resource type="Curve" id=3]
 max_value = 3.0
 _data = [ Vector2( 0, 0.315315 ), 0.0, 0.0, 0, 0, Vector2( 0.995585, 2.36486 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=5]
-curve = SubResource( 4 )
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticlesMaterial" id=5]
 emission_shape = 1
 emission_sphere_radius = 20.0
 flag_disable_z = true
@@ -43,11 +45,10 @@ angular_velocity_random = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 angle_random = 1.0
-scale_curve = SubResource( 5 )
-color_ramp = SubResource( 3 )
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "Idle_1"
+[sub_resource type="Animation" id=6]
 length = 10.0
 loop = true
 step = 0.05
@@ -124,7 +125,7 @@ tracks/5/keys = {
 "values": [ Vector2( 0, -15 ), Vector2( 0, 20 ), Vector2( 0, -15 ), Vector2( 0, 20 ), Vector2( 0, -15 ), Vector2( 0, 20 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("ModulesFg/ModuleAttachPointFg1:position")
+tracks/6/path = NodePath("ModulesFg/ModuleMaterials:position")
 tracks/6/interp = 2
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -136,7 +137,7 @@ tracks/6/keys = {
 "values": [ Vector2( -149.154, -5 ), Vector2( -149.154, 35 ), Vector2( -149.154, -10 ), Vector2( -149.154, 30 ), Vector2( -149.154, 70 ), Vector2( -149.154, 53 ), Vector2( -149.154, 60 ), Vector2( -149.154, 50 ), Vector2( -149.154, 2 ), Vector2( -149.154, 40 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("ModulesBg/ModuleAttachPointBg2/ModuleBg2Sprite:rotation_degrees")
+tracks/7/path = NodePath("ModulesBg/ModuleHousing/Level1:rotation_degrees")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -148,7 +149,7 @@ tracks/7/keys = {
 "values": [ 0.0, -14.1447, -10.9163, -16.0, -10.8693, -14.0, -13.3489, -9.11261, 4.23168 ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("ModulesFg/ModuleAttachPointFg2/ModuleFg2Sprite:rotation_degrees")
+tracks/8/path = NodePath("ModulesFg/ModuleCannon/Level1:rotation_degrees")
 tracks/8/interp = 2
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -160,7 +161,7 @@ tracks/8/keys = {
 "values": [ 0.0, 0.0, -26.5291, -26.5291, 23.1009, 23.1009 ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("ModulesFg/ModuleAttachPointFg2:position")
+tracks/9/path = NodePath("ModulesFg/ModuleCannon:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -172,7 +173,7 @@ tracks/9/keys = {
 "values": [ Vector2( 153.59, 15.4656 ), Vector2( 153.59, 35 ), Vector2( 153.59, 15.4656 ), Vector2( 153.59, 35 ), Vector2( 153.59, 15.4656 ), Vector2( 153.59, 35 ) ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("ModulesFg/ModuleAttachPointFg2/ModuleFg2Sprite/ModuleFg2Sprite2:scale")
+tracks/10/path = NodePath("ModulesFg/ModuleCannon/Level1/ModuleFg2Sprite2:scale")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -184,7 +185,7 @@ tracks/10/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.894344, 1 ), Vector2( 0.894344, 1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.921717, 1 ), Vector2( 0.921717, 1 ) ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("ModulesBg/ModuleAttachPointBg3:position")
+tracks/11/path = NodePath("ModulesBg/ModuleSeeds:position")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -194,6 +195,30 @@ tracks/11/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 218.792, -89.3944 ), Vector2( 253.087, -55.7469 ), Vector2( 204.169, -92.7289 ), Vector2( 253.087, -55.7469 ), Vector2( 218.792, -89.3944 ), Vector2( 253.087, -55.7469 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("ModulesBg/ModuleHousing/Level2:rotation_degrees")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 1.55, 3.6, 4.9, 5.15, 5.5, 5.75, 5.9, 7.7, 9.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -14.1447, -10.9163, -16.0, -10.8693, -14.0, -13.3489, -9.11261, 4.23168 ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("ModulesBg/ModuleHousing/Level3:rotation_degrees")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 1.55, 3.6, 4.9, 5.15, 5.5, 5.75, 5.9, 7.7, 9.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -14.1447, -10.9163, -16.0, -10.8693, -14.0, -13.3489, -9.11261, 4.23168 ]
 }
 
 [node name="Body" type="Node2D"]
@@ -210,36 +235,34 @@ z_index = -500
 amount = 15
 lifetime = 3.5
 preprocess = 2.0
-process_material = SubResource( 6 )
+process_material = SubResource( 5 )
 texture = ExtResource( 14 )
 
 [node name="ModulesFg" type="Node2D" parent="."]
 position = Vector2( -1.19334, -4.77322 )
 z_index = 100
 
-[node name="ModuleAttachPointFg1" type="Position2D" parent="ModulesFg"]
+[node name="ModuleMaterials" type="Position2D" parent="ModulesFg"]
 visible = false
-position = Vector2( -149.154, 33.5762 )
+position = Vector2( -149.154, 35.8514 )
 scale = Vector2( 0.7, 0.7 )
 
-[node name="ModuleFg1Sprite" type="Sprite" parent="ModulesFg/ModuleAttachPointFg1"]
+[node name="Level1" type="Sprite" parent="ModulesFg/ModuleMaterials"]
 position = Vector2( 14.7732, 93.5328 )
 texture = ExtResource( 8 )
 
-[node name="ModuleAttachPointFg2" type="Position2D" parent="ModulesFg"]
+[node name="ModuleCannon" type="Position2D" parent="ModulesFg"]
 visible = false
-position = Vector2( 153.59, 26.1858 )
+position = Vector2( 153.59, 15.4656 )
 
-[node name="ModuleFg2Sprite" type="Sprite" parent="ModulesFg/ModuleAttachPointFg2"]
+[node name="Level1" type="Sprite" parent="ModulesFg/ModuleCannon"]
 position = Vector2( 4.49039, 94.3176 )
-rotation = -0.392587
 texture = ExtResource( 12 )
 offset = Vector2( 10.2828, -0.78476 )
 
-[node name="ModuleFg2Sprite2" type="Sprite" parent="ModulesFg/ModuleAttachPointFg2/ModuleFg2Sprite"]
+[node name="ModuleFg2Sprite2" type="Sprite" parent="ModulesFg/ModuleCannon/Level1"]
 show_behind_parent = true
 position = Vector2( -14.8222, 2.06982 )
-scale = Vector2( 0.990072, 1 )
 texture = ExtResource( 13 )
 offset = Vector2( 211.592, -1.6807 )
 
@@ -247,24 +270,40 @@ offset = Vector2( 211.592, -1.6807 )
 position = Vector2( -1.19334, -4.77322 )
 z_index = -500
 
-[node name="ModuleAttachPointBg2" type="Position2D" parent="ModulesBg"]
-visible = false
+[node name="ModuleHousing" type="Position2D" parent="ModulesBg"]
 position = Vector2( -333, -155 )
 scale = Vector2( 0.7, 0.7 )
 
-[node name="ModuleBg2Sprite" type="Sprite" parent="ModulesBg/ModuleAttachPointBg2"]
+[node name="Level1" type="Sprite" parent="ModulesBg/ModuleHousing"]
+visible = false
+position = Vector2( 162.824, 216.081 )
+rotation = 0.0520354
+z_index = 100
+texture = ExtResource( 15 )
+offset = Vector2( -148.744, -122.147 )
+
+[node name="Level2" type="Sprite" parent="ModulesBg/ModuleHousing"]
+visible = false
 position = Vector2( 155.442, 202.563 )
-rotation = -0.16015
+rotation = 0.0520354
 z_index = 100
 texture = ExtResource( 9 )
 offset = Vector2( -140.669, -109.031 )
 
-[node name="ModuleAttachPointBg3" type="Position2D" parent="ModulesBg"]
+[node name="Level3" type="Sprite" parent="ModulesBg/ModuleHousing"]
 visible = false
-position = Vector2( 252.723, -56.1033 )
+position = Vector2( 155.442, 202.563 )
+rotation = 0.0520354
+z_index = 100
+texture = ExtResource( 16 )
+offset = Vector2( -140.669, -109.031 )
+
+[node name="ModuleSeeds" type="Position2D" parent="ModulesBg"]
+visible = false
+position = Vector2( 251.454, -57.3492 )
 scale = Vector2( 0.7, 0.7 )
 
-[node name="ModuleBg3Sprite" type="Sprite" parent="ModulesBg/ModuleAttachPointBg3"]
+[node name="Level1" type="Sprite" parent="ModulesBg/ModuleSeeds"]
 position = Vector2( 14.7732, 93.5328 )
 z_index = 100
 texture = ExtResource( 10 )
@@ -272,7 +311,7 @@ texture = ExtResource( 10 )
 [node name="BodySprite" type="Sprite" parent="."]
 position = Vector2( 0.754822, -2.26451 )
 texture = ExtResource( 2 )
-offset = Vector2( 0, 7.40258 )
+offset = Vector2( 0, -15 )
 
 [node name="Chimey" type="Node2D" parent="."]
 position = Vector2( -15.5082, -191.269 )
@@ -283,7 +322,7 @@ z_index = -10
 position = Vector2( 0, 2.55402 )
 scale = Vector2( 1.2, 1 )
 texture = ExtResource( 1 )
-offset = Vector2( 0, 18.6023 )
+offset = Vector2( 0, 13 )
 
 [node name="Belt" type="Node2D" parent="."]
 position = Vector2( -15.5082, 141.078 )
@@ -295,7 +334,7 @@ position = Vector2( -1.404, 0.96869 )
 scale = Vector2( 2.5, 2.5 )
 z_index = 10
 texture = ExtResource( 4 )
-offset = Vector2( 0, 9.52516 )
+offset = Vector2( 0, 0.909091 )
 
 [node name="Lower_body" type="Node2D" parent="Belt"]
 position = Vector2( -8.29834, 214.803 )
@@ -305,7 +344,7 @@ z_index = -30
 scale = Vector2( 2, 2 )
 z_index = 10
 texture = ExtResource( 5 )
-offset = Vector2( 0, 21.4529 )
+offset = Vector2( 0, 7.5 )
 
 [node name="IK_leg1" parent="." instance=ExtResource( 3 )]
 position = Vector2( 175.946, 266.296 )
@@ -345,11 +384,11 @@ z_index = 10
 texture = ExtResource( 6 )
 
 [node name="Sprite3" type="Sprite" parent="."]
-position = Vector2( 42.6567, 260.317 )
+position = Vector2( 42.6567, 255.536 )
 rotation = 1.5708
 scale = Vector2( 0.5, 0.5 )
 z_index = 10
 texture = ExtResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Idle_1 = SubResource( 1 )
+anims/Idle_1 = SubResource( 6 )

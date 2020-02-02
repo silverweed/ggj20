@@ -3,9 +3,10 @@ class_name EventTypes
 class Event:
 	var title: String
 	var description: String
-	var choices = [] # [Choice]
+	var choices = []      # [Choice]
 	var stat_changes = [] # [Stat_Change]
-	
+	var mod_changes = []  # [Stat_Change]
+
 
 class Stat_Change:
 	var chance_expr: String

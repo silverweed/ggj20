@@ -130,7 +130,7 @@ end
 
 
 
-Dmg_7 
+event Dmg_7 
 title Mountain Pass
 ---
 There’s only one way forward. No choice lies ahead. Sharp rocks, snow covering every inch of the narrow pass.

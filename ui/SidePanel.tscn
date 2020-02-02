@@ -2,7 +2,7 @@
 
 [ext_resource path="res://ui/PrimaryStatsBar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/StatsPanel.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ui/InputMonoRegular.tres" type="DynamicFont" id=3]
+[ext_resource path="res://ui/EventIconPanel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ui/textures/UI_right_box.png" type="Texture" id=4]
 
 [node name="SidePanel" type="Control"]
@@ -40,18 +40,7 @@ margin_bottom = 228.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.6
 
-[node name="Label" type="Label" parent="VBoxContainer"]
-margin_top = 232.0
-margin_right = 431.0
-margin_bottom = 613.0
-size_flags_vertical = 3
-custom_fonts/font = ExtResource( 3 )
-text = "Writing
-of 
-some
-sort"
-align = 1
-valign = 1
+[node name="EventIconPanel" parent="VBoxContainer" instance=ExtResource( 3 )]
 
 [node name="StatsPanel" parent="VBoxContainer" instance=ExtResource( 2 )]
 anchor_right = 0.0

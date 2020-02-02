@@ -5,5 +5,5 @@ The journey is long.
 ---
 change [] fuel -1
 > Carry on
-	[]	test_choices
+	[]	home
 end

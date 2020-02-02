@@ -1,7 +1,7 @@
 extends Node
 
 signal stat_changed(name, new_value)
-signal event_started(event, stats_changed)
+signal event_started(event, stats_changed, mods_changed)
 signal event_choice_selected(event, n_choice)
 
 var stats_cur = {}
@@ -18,6 +18,7 @@ var stats_max = {
 var events: EventsDB
 var game_mgr: GameManager
 var screenshake_sys: ScreenShakeSystem
+var player: PlayerBody
 
 
 func _ready():
@@ -98,14 +99,15 @@ func run_event(name: String):
 		return
 	
 	var event: EventTypes.Event = events.get(name)
-	var stats_changed = apply_stat_changes(event)
-	emit_signal("event_started", event, stats_changed)
+	var stats_changed = apply_stat_changes(event.stat_changes)
+	var mods_changed = apply_mod_changes(event.mod_changes)
+	emit_signal("event_started", event, stats_changed, mods_changed)
 
 
-func apply_stat_changes(event: EventTypes.Event): # -> [[name, intended_change, actual_change]]
+func apply_stat_changes(all_changes): # -> [[name, intended_change, actual_change]]
 	var changes = []
-	for change in event.stat_changes:
-		var percent = EventParser.compute_chance_expr(change.chance_expr, stats_cur)
+	for change in all_changes:
+		var percent = EventParser.compute_chance_expr(change.chance_expr, stats_cur, player.modules)
 		if rand_range(0, 100) < percent:
 			var prev = get_stat(change.stat_name)
 			add_stat(change.stat_name, change.change)
@@ -113,9 +115,25 @@ func apply_stat_changes(event: EventTypes.Event): # -> [[name, intended_change, 
 	return changes
 
 
+func apply_mod_changes(all_changes): # -> [[name, intended_change, actual_change]]
+	if player == null:
+		print("[warning] no player registered")
+		return
+		
+	var changes = []
+	for change in all_changes:
+		var percent = EventParser.compute_chance_expr(change.chance_expr, stats_cur, player.modules)
+		if rand_range(0, 100) < percent:
+			var prev = player.get_module_level(change.stat_name)
+			player.set_module_level(change.stat_name, prev + change.change)
+			changes.append([change.stat_name, change.change, \
+					player.get_module_level(change.stat_name) - prev])
+	return changes
+	
+	
+# Vlambeer senpai.
 func do_screenshake():
 	if !screenshake_sys:
 		return
-	
 	screenshake_sys.screenshake(10.0, 0.3, false, true)
 	

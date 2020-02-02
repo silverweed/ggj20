@@ -1,0 +1,10 @@
+[gd_scene format=2]
+
+[node name="EventIconPanel" type="Panel"]
+margin_top = 232.0
+margin_right = 431.0
+margin_bottom = 613.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}

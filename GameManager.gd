@@ -56,7 +56,8 @@ func eval_event_choice_outcome(choice: EventTypes.Event_Choice) -> String:
 	var chances = []
 	var cum_perc = 0
 	for outcome in choice.outcomes:
-		var percent = EventParser.compute_chance_expr(outcome.chance_expr, stats)
+		var percent = EventParser.compute_chance_expr(
+			outcome.chance_expr, stats, globals.player.modules)
 		percent = min(100 - cum_perc, percent)
 		cum_perc += percent
 		chances.push_back(cum_perc)

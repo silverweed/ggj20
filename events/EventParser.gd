@@ -14,6 +14,7 @@ static func parse_all_events(fname: String, file: File): # -> Dict(name -> Event
 	#   ---
 	#   change [expr] stat1 +N
 	#   change []     stat2 -M # events are independent
+	#   module []     name  +lv/-lv # name can start with m_, it'll be ignored.
 	#   > Choice A
 	#     [expr] outcome_1
 	#     ...
@@ -115,6 +116,27 @@ static func parse_all_events(fname: String, file: File): # -> Dict(name -> Event
 			stat_change.stat_name = change_part[0]
 			stat_change.change = int(change_part[1])
 			cur_event.stat_changes.push_back(stat_change)
+		
+		elif line.begins_with("module"): 
+			# Copypasted from change
+			if cur_choice != null:
+				synerr(fname, lineno, "cannot have module change inside choice")
+				break
+			if cur_event == null:
+				synerr(fname, lineno, "found module change outside an event")
+				break
+			line = line.trim_prefix("module").strip_edges().trim_prefix("[")
+			var tokens = line.split("]")
+			if tokens.size() != 2:
+				synerr(fname, lineno, "invalid line [" + line)
+				break
+				
+			var mod_change = EventTypes.Stat_Change.new();
+			mod_change.chance_expr = tokens[0].trim_suffix("]").strip_edges()
+			var change_part = tokens[1].strip_edges().split(" ")
+			mod_change.stat_name = change_part[0].trim_prefix("m_")
+			mod_change.change = int(change_part[1])
+			cur_event.mod_changes.push_back(mod_change)
 			
 		elif line == "end":
 			if cur_choice != null:
@@ -133,9 +155,10 @@ static func parse_all_events(fname: String, file: File): # -> Dict(name -> Event
 
 
 # stats: { String => int }
+# mods: { String => Module }
 # returns: a number obtained by parsing the expression, which represents
 # a 100-based percentage
-static func compute_chance_expr(chance_expr: String, stats) -> float:
+static func compute_chance_expr(chance_expr: String, stats, mods) -> float:
 	if chance_expr.length() == 0:
 		return 100.0
 		
@@ -144,6 +167,12 @@ static func compute_chance_expr(chance_expr: String, stats) -> float:
 	#   ident (stat name)
 	#   operator (+ - *)
 	# operators have their usual precedence.
+	# == Special Identifier rules ==
+	# - If an ident has the form
+	#    ident>N   (or >=, <, <=)
+	#   it is treated as a boolean 0 or 1
+	# - If an ident starts with m_, it is treated as a
+	#   module level, rather than a stat value 
 #	print("parsing ", chance_expr)
 	var tokens = tokenize_chance_expr(chance_expr)
 #	debug_print_tokens(tokens)
@@ -164,7 +193,7 @@ static func compute_chance_expr(chance_expr: String, stats) -> float:
 					print("[syntax_error] unexpected operator " + str(token.value) + " in stream")
 					return 0.0
 
-				left = parse_val(token, stats)
+				left = parse_val(token, stats, mods)
 				state = Parser_State.WantOp
 				
 			Parser_State.WantOp:
@@ -185,7 +214,7 @@ static func compute_chance_expr(chance_expr: String, stats) -> float:
 					print("[syntax_error] unexpected operator " + str(token.value) + " in stream")
 					return 0.0
 				
-				var val = parse_val(token, stats)
+				var val = parse_val(token, stats, mods)
 				left *= val
 				state = Parser_State.WantOp
 				
@@ -213,7 +242,7 @@ static func compute_chance_expr(chance_expr: String, stats) -> float:
 					print("[syntax_error] unexpected operator " + str(token.value) + " in stream")
 					return 0.0
 
-				left = parse_val(token, stats)
+				left = parse_val(token, stats, mods)
 				state = Parser_State.WantOp
 				
 			Parser_State.WantOp:
@@ -230,7 +259,7 @@ static func compute_chance_expr(chance_expr: String, stats) -> float:
 					print("[syntax_error] unexpected operator " + str(token.value) + " in stream")
 					return 0.0
 				
-				var val = parse_val(token, stats)
+				var val = parse_val(token, stats, mods)
 				match cur_op:
 					Token_Type.Plus:
 						left += val
@@ -255,27 +284,47 @@ static func is_op(token_type) -> bool:
 		token_type == Token_Type.Mul
 
 
-static func parse_val(token: Token, stats) -> float:
+static func parse_val(token: Token, stats, mods) -> float:
 	if token.type == Token_Type.Ident:
 		var splitters = [">=",">","<=","<"]
 		for splitter in splitters:
 			var left_right = token.value.split(splitter)
 			if len(left_right) == 1: continue
 			var actual_ident = left_right[0]
-			if !stats.has(actual_ident):
-				return 0.0
+			var val = NAN
+			if actual_ident.begins_with("m_"):
+				actual_ident = actual_ident.trim_prefix("m_")
+				if !mods.has(actual_ident):
+					print("[warning] inexisting module ", actual_ident)
+					return 0.0
+				val = mods[actual_ident].level
+			else:
+				if !stats.has(actual_ident):
+					print("[warning] inexisting stat ", actual_ident)
+					return 0.0
+				val = float(stats[actual_ident])
 			var num = float(left_right[1])
 			match splitter:
-				">": return float(stats[actual_ident] > num)
-				">=": return float(stats[actual_ident] >= num)
-				"<": return float(stats[actual_ident] < num)
-				"<=": return float(stats[actual_ident] <= num)
+				">": return float(val > num)
+				">=": return float(val >= num)
+				"<": return float(val < num)
+				"<=": return float(val <= num)
 				
-		if !stats.has(token.value):
-			return 0.0
-			
-		print("[note] ", token.value, " = ", stats[token.value])
-		return stats[token.value]
+		var val = NAN
+		if token.value.begins_with("m_"):
+			var modname = token.value.trim_prefix("m_")
+			if !mods.has(modname):
+				print("[warning] inexisting module ", modname)
+				return 0.0
+			val = mods[token.value].level
+		else:
+			if !stats.has(token.value):
+				print("[warning] inexisting stat ", token.value)
+				return 0.0
+			val = float(stats[token.value])
+		print("[note] ", token.value, " = ", val)
+		
+		return val
 	
 	elif token.type == Token_Type.Num:
 		return token.value

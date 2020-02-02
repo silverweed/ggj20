@@ -6,6 +6,7 @@ signal choice_selected(event, n_choice)
 var event_description: String
 var cur_event: EventTypes.Event
 var cur_event_stats_changed = []
+var cur_event_mods_changed = []
 var stats_change_shown = false
 
 onready var description: DialogBox = $DialogBox
@@ -20,9 +21,12 @@ func _ready():
 	choices.owner = self
 
 
-func on_event_started(event: EventTypes.Event, stats_changed):
+# stats_changed: [Stat_Change]
+# mods_changed: [Stat_Change]
+func on_event_started(event: EventTypes.Event, stats_changed, mods_changed):
 	cur_event = event
 	cur_event_stats_changed = stats_changed
+	cur_event_mods_changed = mods_changed
 	stats_change_shown = false
 	event_description = event.description
 	choices.hide()
@@ -37,7 +41,9 @@ func on_all_displayed():
 		choices.show_choices(choice_desc)
 	else:
 		stats_change_shown = true
-		description.display_all([prettify_stat_changes(cur_event_stats_changed)])
+		var string = prettify_stat_changes(cur_event_stats_changed)
+		string += "\n" + prettify_stat_changes(cur_event_mods_changed)
+		description.display_all([string])
 
 
 func prettify_stat_changes(stat_changes) -> String:
@@ -75,7 +81,8 @@ func on_choice_selected(n: int):
 func eval_and_filter_choices(all_choices): # -> [Choice]
 	var filtered = []
 	for choice in all_choices:
-		var percent = EventParser.compute_chance_expr(choice.chance_expr, globals.stats_cur)
+		var percent = EventParser.compute_chance_expr(
+				choice.chance_expr, globals.stats_cur, globals.player.modules)
 		if rand_range(0, 100) < percent:
 			filtered.append(choice)
 	return filtered

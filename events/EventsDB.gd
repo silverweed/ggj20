@@ -42,4 +42,5 @@ func debug_print_events(evts):
 				print("[", outcome.chance_expr, "] ", outcome.linked_event)
 		for change in event.stat_changes:
 			print("change [", change.chance_expr, "] ", change.stat_name, " ", change.change)
-		
+		for change in event.mod_changes:
+			print("module [", change.chance_expr, "] ", change.stat_name, " ", change.change)
