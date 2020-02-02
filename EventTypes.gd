@@ -8,6 +8,12 @@ class Event:
 	var mod_changes = []  # [Stat_Change]
 
 
+class Proxy_Event:
+	var choice: Event_Choice
+	var stat_changes = []
+	var mod_changes = []
+	
+	
 class Stat_Change:
 	var chance_expr: String
 	var stat_name: String

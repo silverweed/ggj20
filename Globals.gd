@@ -93,7 +93,19 @@ func check_gameover():
 	return Gameover_State.Not_Game_Over
 
 
+# name can be an Event id or a Proxy_Event id
 func run_event(name: String):
+	var proxy_recursion = 0
+	var orig_name = name
+	while events.proxies.has(name):
+		var prev_name = name
+		name = follow_proxy(events.proxies[name])
+		print("[note] following proxy ", prev_name, " -> ", name) 
+		proxy_recursion += 1
+		if proxy_recursion > 64:
+			print("[error] Proxy recursion exceeded (starting from ", name, ")")
+			return
+		
 	if !events.has(name):
 		print("[warning] inexisting event ", name)
 		return
@@ -129,11 +141,41 @@ func apply_mod_changes(all_changes): # -> [[name, intended_change, actual_change
 			changes.append([change.stat_name, change.change, \
 					player.get_module_level(change.stat_name) - prev])
 	return changes
+
+
+# Applies changes and returns next event id
+func follow_proxy(proxy: EventTypes.Proxy_Event) -> String:
+	apply_stat_changes(proxy.stat_changes)
+	apply_mod_changes(proxy.mod_changes)
+	return eval_event_choice_outcome(proxy.choice)
+	
+
+func eval_event_choice_outcome(choice: EventTypes.Event_Choice) -> String:
+	var stats = stats_cur
+	var chances = []
+	var cum_perc = 0
+	for outcome in choice.outcomes:
+		var percent = EventParser.compute_chance_expr(
+			outcome.chance_expr, stats, player.modules)
+		percent = min(100 - cum_perc, percent)
+		cum_perc += percent
+		chances.push_back(cum_perc)
+		if cum_perc >= 100:
+			break
+	
+	var r = rand_range(0, 100)
+	for i in range(0, len(chances)):
+		if r <= chances[i]:
+			return choice.outcomes[i].linked_event
+	
+	assert(len(choice.outcomes) == 0, "Choice not made!")
+	return ""
 	
 	
 # Vlambeer senpai.
 func do_screenshake():
 	if !screenshake_sys:
+		print("[warning] no screenshake system!")
 		return
-	screenshake_sys.screenshake(10.0, 0.3, false, true)
+	screenshake_sys.screenshake(4, 0.3, false, true)
 	

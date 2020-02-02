@@ -15,8 +15,9 @@ func _ready():
 	globals.game_mgr = self
 	if globals.events.events.empty():
 		globals.events.load_events("base_events.txt")
-		globals.events.load_events("event_pack_1.txt")
-		globals.events.load_events("event_pack_2.txt")
+#		globals.events.load_events("event_pack_1.txt")
+#		globals.events.load_events("event_pack_2.txt")
+#		globals.events.load_events("null_events_1-11.txt")
 #		globals.events.load_events("test_events.txt")
 		
 	var event_uis = get_tree().get_nodes_in_group("event_ui")
@@ -46,31 +47,9 @@ func _process(delta):
 		
 		
 func on_event_choice_selected(event: EventTypes.Event, n_choice: int):
-	var next_evt = eval_event_choice_outcome(event.choices[n_choice])
+	var next_evt = globals.eval_event_choice_outcome(event.choices[n_choice])
 	if next_evt != "":
 		globals.run_event(next_evt)
-
-
-func eval_event_choice_outcome(choice: EventTypes.Event_Choice) -> String:
-	var stats = Globals.stats_cur
-	var chances = []
-	var cum_perc = 0
-	for outcome in choice.outcomes:
-		var percent = EventParser.compute_chance_expr(
-			outcome.chance_expr, stats, globals.player.modules)
-		percent = min(100 - cum_perc, percent)
-		cum_perc += percent
-		chances.push_back(cum_perc)
-		if cum_perc >= 100:
-			break
-	
-	var r = rand_range(0, 100)
-	for i in range(0, len(chances)):
-		if r <= chances[i]:
-			return choice.outcomes[i].linked_event
-	
-	assert(len(choice.outcomes) == 0, "Choice not made!")
-	return ""
 
 
 func gameover():

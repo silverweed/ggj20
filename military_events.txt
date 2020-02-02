@@ -1,0 +1,292 @@
+event Abb_1
+title Abandoned Tank
+---
+You come across a large tracked vehicle from Time Immemorial.
+It seems that the vehicle has been used by humans.
+Holes in the armor carefully patched with wood and scrap metal, it lied abandoned in the plains.
+---
+> Approach the vehicle
+[50] Abb_1_1
+[] Abb_1_2
+> ignore the machinery and proceed on you journey
+[] home
+end
+
+event Abb_1_1
+---
+Upon close inspection, the vehicle has been left stranded for lack of fuel.
+You salvage what little munitions have been left.
+---
+change [] ammo +1
+change[50] ammo +1
+> proceed in your journey.
+[] home
+end
+
+event Abb_1_2
+---
+Upon closer ispection you notice a broken track on the vehicle.
+Immobilized the vehicle has been stripped bare of ammunitions and abandoned.
+You salvage what you can, gathering fuel and material.
+---
+change [] fuel +5
+change [] mats +2
+> proceed in your journey.
+[] home
+end
+
+event Abb_2
+title Abandoned_Artilery
+---
+The automaton encounters a large stationary gun pointed at a slight angle.
+Too heavy to be easily lifted, it has been left untouched by the humans.
+---
+> salvage the remains
+[75 + 5 * integrity<10] Abb_2_1
+[5 - 5 * integrity<10] Abb_2_2
+[] Abb_2_3
+> ignore the machinery and proceed on you journey
+[] home
+end
+
+event Abb_2_1
+---
+You salvage what little munitions have been left.
+---
+change [25] ammo +1
+change[25] ammo +2
+> proceed in your journey.
+[] home
+end
+
+Abb_2_2
+---
+You use the claw to uproot the machine from its place, and attach it to the hull.
+The machine suffers some small damage in the process,  but it is now firmly attached to the automaton.
+---
+change [] integrity -2
+change[25] integrity -3
+module [] weapon +1
+> proceed in your journey.
+[] home
+end
+
+Abb_2_3
+---
+As the claw approaches the device, a spark lights some of the munitions, triggering a large explosion and severaly damaging the claw.
+---
+change [] integrity -3
+change[25] integrity -1
+> proceed in your journey.
+[] home
+end
+
+event Abb_3
+title Abandoned_bunker
+---
+As the machine lumbers ahead, a sharp metallic sound interrupts the otherwise monotonous rhythm of the journey.
+The foot revealed a thick metal plate, covering the ground, intact, aside from the damage just sustained.
+---
+> Remove the plate 
+[50] Abb_3_1
+[] Abb_3_2
+> ignore the plate and proceed on you journey
+[] home
+end
+
+event Abb_3_1
+---
+The metal door easily bends when the claw grabs it, revealing its content.
+Munitions and machines of war from time immemorial are found inside.
+The claw dives in the new opening to retrieve useful materials but is damaged by the tight walls.
+---
+change[] ammo +2
+change[] integrity -1
+> proceed in your journey.
+[] home
+end
+
+event Abb_3_2
+---
+The metal door easily bends when the claw grabs it, revealing its content.
+Munitions and machines of war from time immemorial are found inside.
+As the claw dives inside to retrieve its content, a spark lights some of the munitions, triggering a large explosion and severly damaging the claw.
+---
+change [] integrity -3
+change[25] integrity -1
+> proceed in your journey.
+[] home
+end
+
+event citadel_1
+---
+You spot a walled citadel entrenched atop a nearby hill.
+Seemingly abandoned, the sensors do not detect any sign of life.
+---
+> approach the citadel
+[50] citadel_1_1
+[25] citadel_1_2
+[5] citadel_1_3
+[] citadel_1_4
+end
+
+event citadel_1_1
+---
+Behind the crumbling walls, lie several containers of ammo and supplies.
+---
+change[] ammo +1
+change[] mats +5
+> proceed in your journey.
+[] home
+end
+
+event citadel_1_2
+---
+Behind the crumbling walls, lie several containers of ammo and supplies.
+---
+change[] ammo +1
+change[] mats +5
+> proceed in your journey.
+[] home
+end
+
+event citadel_1_3
+---
+As the gian lumbers closer to the citadel, a small group of humans hail the automaton.
+---
+change[] inhabitants +4
+change[] mats +5
+> Board the humans and continue on your journey
+[] home
+end
+
+event citadel_1_4
+---
+The ancient gun on the wall of the citadel suddenly turns to face the automaton.
+Before the machine is able to turn direction a powerful blast echoes from the wall.
+An iron shell hits the automaton directly on the upper levels.
+---
+change[] inhabitabts -2
+change[] integrity -2
+> Fight the citadel
+[100 * module_gun - 100 * ammo<1] citadel_1_4_1
+[75] citadel_1_4_3
+[25] citadel_1_4_4
+> Retreat
+[] citadel_1_4_5
+end
+
+event citadel_1_4_1
+---
+With a powerful blast, the automaton returns fire on the citadel, destroying the ancient weapon.
+---
+change[] ammo -1
+>continue
+[25] citadel_1_4_1_1
+[] citadel_1_4_1_2
+end 
+
+event citadel_1_4_1_1
+---
+You approach the remains of the citadel, salvaging what is left from the rubble.
+You find a large container of materials and fuel.
+Utilizing its claws, the automaton lifts the container and attaches to the hull.
+The stress of the newfound weight, slightly damages the automaton, but the container is now firmly attached to its body.
+---
+change[] ammo -1
+change[] mats 5
+change[] fuel 5
+module [] mats 1
+> proceed in your journey.
+[] home
+end
+
+event citadel_1_4_1_2
+---
+You approach the remains of the citadel, salvaging what is left from the rubble.
+You find a large amount of materials and fuel.
+---
+change[] ammo -1
+change[] mats 5
+change[] fuel 5
+> proceed in your journey.
+[] home
+end
+
+
+event citadel_1_4_3
+---
+Without any means to open fire, the automaton charges the citadel.
+Another iron shell hits the automaton before it can reach its target.
+---
+change[] integrity -2
+>continue
+[] citadel_1_4_1_4
+end 
+
+event citadel_1_4_4
+---
+The automaton crashes in the citadel before the inhabitants of are able to reload the weapon. Destroying the it.
+---
+change[] integrity -5
+>continue
+[25] citadel_1_4_1_1
+[] citadel_1_4_1_2
+end 
+
+event citadel_1_4_5
+---
+The automaton immediately changes course and abandones the citadel before its inhabitants are able to recharge the weapon.
+---
+>Escape
+[] home
+end 
+
+event enemy_1
+---
+A group of bandits approch the automaton on a rusty wheeled vehicle.
+---
+> [100 * m_weapon - 100 * ammo>0] shoot them
+> attempt to escape
+end
+
+event enemy_1_shoot_1
+---
+The automaton aims its gun towards the scrappy vehicle, with a deafening blast, the vehicle is destroyed in fiery explosion.
+
+You gather some building materials from the remains
+---
+change [] ammo -1
+change [] mats 4
+> Continue on your journey
+[] home
+end
+
+event enemy_1_shoot_2
+---
+The automaton aims its gun towards the scrappy vehicle and immediately opens fire.
+Barely missing the bandits.
+Scared by the display, the aggressors immediately turn and escape into the plains.
+---
+change [] ammo -1
+> Continue on your journey
+[] home
+end
+
+event enemy_1_escape_1
+---
+The bandits reach quickly reach the automaton and manage to shoot off a crate of buiding supplies.
+---
+change [] mats -5
+change [] integrity -3
+> continue on your journey
+[] home
+end
+
+event enemy_1_escape_2
+---
+The bandits reach quickly reach the automaton but could not damage the armor of the machine.
+---
+> continue on your journey
+[] home
+end

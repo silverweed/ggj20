@@ -1,0 +1,148 @@
+event null_1
+---
+The journey is long.
+---
+> Continue
+[] home
+end 
+
+event null_2
+---
+Perils await you on this journey. But nothing relevant happened this time.
+---
+> Continue
+[] home
+end 
+
+
+event null_3
+---
+A bunch of metal spikes and plates protrude for the terrain ahead, remnants of human vehicles, mostly rusted away. Easy to step over or walk around.  
+---
+> Nothing useful here
+[] home
+end 
+
+
+event null_4
+---
+You spot the remains of a walled citadel entrenched atop a nearby hill.
+A wide breach in the corroded walls seem to suggest how the settlement might have met its end.
+---
+> Continue
+[] home
+end 
+
+
+event null_5
+---
+Dead trees and branches give way to the weight of the automaton.
+The dry wood too brittle to be useful, now only serve as a reminder of the once lush forests that covered the areas.
+---
+> Continue
+[] home
+end 
+
+
+event null_6
+---
+The AI sensors flag various warnings. /!\ THREATS INCOMING /!\ The sirens on board trigger simultaneously breaking the stillness in the open air. 
+---
+> Take a defensive position and ready for combat
+[] null_6_1
+> Speed up to avoid the threat
+[] null_6_2
+[] home
+end 
+
+event null_6_1
+---
+The heavy machine stops. No more thuds or shaking. Only a clear and sharp warning piercing the ears of nearby wild life. Nothing happens, the sensors must’ve picked up a false alarm.
+---
+> Better get those sensors checked
+[] home
+end
+
+event null_6_2
+---
+The engine starts pumping more fuel, thick billowing smoke is vomited from the chimney as the moving fortress picks up speed. After a short time the sensors go quiet. Looking back, nothing can be seen.
+---
+> Was there something hiding or or was it a system malfunction?
+[] home
+end
+
+event null_7
+---
+A small infight breaks in the living quarters.
+Fortunately, nothing of consequence happens.
+---
+> Continue
+[] home
+end 
+
+
+event null_8
+---
+The loud crashing sounds of the claws echo in the valley.
+Occasionally, the claws slip on the smooth rocks, in search for stable footing.
+---
+> Continue
+[] home
+end 
+
+event null_9
+---
+A skewed large metal sign emerges from the tall grass. It looks like a signpost to the remnants of a service station. 
+---
+> Investigate
+[] null_9_1
+> It’s clearly a waste of time, move along
+[] home
+end 
+
+event null_9_1
+---
+The half submerged tanks are dry. Grass and other thin bushes are growing at the bottom of one of the gas tanks.
+---
+> Nothing useful here
+[] home
+end
+
+event null_10
+---
+A lonely hut stands atop a nearby hill, a little away from the current course.
+The sensors do not not detect any sign of life.
+---
+> Approach the building
+[] null_10_1
+> Ignore the hut and continue on the journey
+[] home
+end 
+
+event null_10_1
+---
+Barely standing under its own weight, the small building trembles as the automaton approaches.
+Whoever lived in the hut, has long since left, and now only dust remains.
+---
+> Continue
+[] home
+end 
+
+event null_11
+---
+A thin column of smoke grabs the automaton’s attention. At its source, a group of four mud huts and metal shacks, placed in a circle, can be seen in the distance. 
+---
+> Approach the tiny settlement
+[] null_11_1
+> Avoid this interaction
+[] home
+end 
+
+event null_11_1
+---
+Lifeless bodies are put on display around the settlement. Raiders must have made it here first. 
+---
+> Help arrived too late
+[] home
+end
+

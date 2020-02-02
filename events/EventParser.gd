@@ -4,8 +4,9 @@ static func synerr(fname: String, lineno: int, msg: String):
 	print("[syntax_error] at ", fname, ":", lineno, ": ", msg)
 	
 
-static func parse_all_events(fname: String, file: File): # -> Dict(name -> Event)
+static func parse_all_events(fname: String, file: File): # -> [Dict(name -> Event), Dict(name -> Proxy_Event)]
 	var events = {}
+	var proxies = {}
 	# Format:
 	#   event event_name # comment is ignored
 	#   title Event Title (more than 1 word allowed)
@@ -23,12 +24,15 @@ static func parse_all_events(fname: String, file: File): # -> Dict(name -> Event
 	#      ...
 	#   end
 	# ...repeats
+	# There are also "proxies", which are used to select between 
+	# events without interaction with user
 	var cur_event: EventTypes.Event = null
 	var cur_event_key = ""
 	var started_desc = false
 	var desc = ""
 	var cur_choice: EventTypes.Event_Choice = null
 	var lineno = 0
+	var cur_proxy: EventTypes.Proxy_Event = null
 	while !file.eof_reached():
 		var line = file.get_line()
 		lineno += 1
@@ -46,11 +50,19 @@ static func parse_all_events(fname: String, file: File): # -> Dict(name -> Event
 		line = noncomment_comment[0].strip_edges()
 			
 		if line.begins_with("event"):
-			if cur_event != null:
-				synerr(fname, lineno, "previous event wasn't ended when read 'event'")
+			if cur_event != null or cur_proxy != null:
+				synerr(fname, lineno, "previous event or proxy wasn't ended when read 'event'")
 				break
 			cur_event = EventTypes.Event.new()
 			cur_event_key = line.trim_prefix("event").strip_edges()
+		
+		elif line.begins_with("proxy"):
+			if cur_event != null or cur_proxy != null:
+				synerr(fname, lineno, "previous event or proxy wasn't ended when read 'event'")
+				break
+			cur_proxy = EventTypes.Proxy_Event.new()
+			cur_event_key = line.trim_prefix("proxy").strip_edges()
+			cur_choice = EventTypes.Event_Choice.new()
 			
 		elif line.begins_with("title"):
 			if cur_event == null:
@@ -69,6 +81,9 @@ static func parse_all_events(fname: String, file: File): # -> Dict(name -> Event
 			started_desc = true
 			
 		elif line.begins_with(">"):
+			if cur_proxy != null:
+				synerr(fname, lineno, "proxies cannot have explicit choices.")
+				break
 			if cur_choice != null:
 				cur_event.choices.push_back(cur_choice)
 			cur_choice = EventTypes.Event_Choice.new()
@@ -98,11 +113,11 @@ static func parse_all_events(fname: String, file: File): # -> Dict(name -> Event
 			cur_choice.outcomes.push_back(outcome)
 		
 		elif line.begins_with("change"):
-			if cur_choice != null:
-				synerr(fname, lineno, "cannot have stat change inside choice")
+			if cur_choice != null and cur_event != null:
+				synerr(fname, lineno, "events cannot have stat change inside choice")
 				break
-			if cur_event == null:
-				synerr(fname, lineno, "found stat change outside an event")
+			if cur_event == null and cur_proxy == null:
+				synerr(fname, lineno, "found stat change outside an event or proxy")
 				break
 			line = line.trim_prefix("change").strip_edges().trim_prefix("[")
 			var tokens = line.split("]")
@@ -115,15 +130,19 @@ static func parse_all_events(fname: String, file: File): # -> Dict(name -> Event
 			var change_part = tokens[1].strip_edges().split(" ")
 			stat_change.stat_name = change_part[0]
 			stat_change.change = int(change_part[1])
-			cur_event.stat_changes.push_back(stat_change)
+			if cur_event:
+				cur_event.stat_changes.push_back(stat_change)
+			else:
+				assert(cur_proxy != null)
+				cur_proxy.stat_changes.push_back(stat_change)
 		
 		elif line.begins_with("module"): 
 			# Copypasted from change
-			if cur_choice != null:
-				synerr(fname, lineno, "cannot have module change inside choice")
+			if cur_choice != null and cur_event != null:
+				synerr(fname, lineno, "events cannot have module change inside choice")
 				break
-			if cur_event == null:
-				synerr(fname, lineno, "found module change outside an event")
+			if cur_event == null and cur_proxy == null:
+				synerr(fname, lineno, "found module change outside an event or proxy")
 				break
 			line = line.trim_prefix("module").strip_edges().trim_prefix("[")
 			var tokens = line.split("]")
@@ -136,21 +155,31 @@ static func parse_all_events(fname: String, file: File): # -> Dict(name -> Event
 			var change_part = tokens[1].strip_edges().split(" ")
 			mod_change.stat_name = change_part[0].trim_prefix("m_")
 			mod_change.change = int(change_part[1])
-			cur_event.mod_changes.push_back(mod_change)
+			if cur_event:
+				cur_event.mod_changes.push_back(mod_change)
+			else:
+				assert(cur_proxy != null)
+				cur_proxy.mod_changes.push_back(mod_change)
 			
 		elif line == "end":
 			if cur_choice != null:
-				cur_event.choices.push_back(cur_choice)
-			events[cur_event_key] = cur_event
+				if cur_event:
+					cur_event.choices.push_back(cur_choice)
+					events[cur_event_key] = cur_event
+				else:
+					assert(cur_proxy != null)
+					cur_proxy.choice = cur_choice
+					proxies[cur_event_key] = cur_proxy
 			cur_event = null
+			cur_proxy = null
 			cur_event_key = ""
 			cur_choice = null
 		
 		
-	if cur_event != null:
+	if cur_event != null or cur_proxy != null:
 		print("[warning] Not all events were parsed correctly.")
 	
-	return events
+	return [events, proxies]
 
 
 
