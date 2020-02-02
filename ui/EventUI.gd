@@ -53,6 +53,8 @@ func prettify_stat_changes(stat_changes) -> String:
 	var collapsed = {}
 	for change in stat_changes:
 		var s_name = change[0]
+		if s_name == "milestone":
+			continue
 		if collapsed.has(s_name):
 			var c = collapsed[s_name]
 			collapsed[s_name] = [c[0] + change[1], c[1] + change[2]]
