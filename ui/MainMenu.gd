@@ -16,6 +16,7 @@ func _on_Play_pressed():
 
 
 func move_underline(node: Control):
+	$AudioStreamPlayer.play()
 	underline.rect_global_position.y = node.rect_global_position.y + 150
 
 

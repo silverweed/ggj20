@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://player/Body.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/TilingGround.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://levels/ParallaxLayer1.tscn" type="PackedScene" id=6]
 [ext_resource path="res://levels/ParallaxLayer3.tscn" type="PackedScene" id=7]
 [ext_resource path="res://levels/ParallaxLayer2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://levels/FadeIn.gd" type="Script" id=9]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.235955 )
@@ -16,6 +17,14 @@ colors = PoolColorArray( 0.756863, 0.796078, 0.796078, 1 )
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
 width = 100
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+width = 10
 
 [node name="WorldLevel" type="Node2D"]
 position = Vector2( -41.7842, 196.541 )
@@ -72,3 +81,11 @@ z_as_relative = false
 script = ExtResource( 5 )
 speed_bg = 120
 speed_fg = 160
+
+[node name="FadeIn" type="Sprite" parent="."]
+position = Vector2( 1117.15, 216.404 )
+scale = Vector2( 631.365, 3951.94 )
+z_index = 900
+texture = SubResource( 4 )
+script = ExtResource( 9 )
+fade_t = 1.5
