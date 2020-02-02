@@ -150,10 +150,10 @@ func apply_mod_changes(all_changes): # -> [[name, intended_change, actual_change
 func follow_proxy(proxy: EventTypes.Proxy_Event) -> String:
 	apply_stat_changes(proxy.stat_changes)
 	apply_mod_changes(proxy.mod_changes)
-	return eval_event_choice_outcome(proxy.choice)
+	return eval_event_choice_outcome(proxy.choice, proxy)
 	
 
-func eval_event_choice_outcome(choice: EventTypes.Event_Choice) -> String:
+func eval_event_choice_outcome(choice: EventTypes.Event_Choice, dbg_event = null) -> String:
 	var stats = stats_cur
 	var chances = []
 	var cum_perc = 0
@@ -166,6 +166,13 @@ func eval_event_choice_outcome(choice: EventTypes.Event_Choice) -> String:
 		if cum_perc >= 100:
 			break
 	
+	# Ensure choices sum to 100
+	if chances[len(chances) - 1] < 100:
+		var title = dbg_event.title if dbg_event else "?"
+		print("[notice] choice ", title, ":", choice.description, " has outcomes not summing up to 100.")
+		print("[notice] description is: ", dbg_event.description if dbg_event else "???")
+	chances[len(chances) - 1] = 100
+		
 	var r = rand_range(0, 100)
 	for i in range(0, len(chances)):
 		if r <= chances[i]:

@@ -52,7 +52,7 @@ func _process(delta):
 		
 		
 func on_event_choice_selected(event: EventTypes.Event, n_choice: int):
-	var next_evt = globals.eval_event_choice_outcome(event.choices[n_choice])
+	var next_evt = globals.eval_event_choice_outcome(event.choices[n_choice], event)
 	if next_evt != "":
 		globals.run_event(next_evt)
 
